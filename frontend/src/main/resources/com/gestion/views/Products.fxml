@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Button?>
+
+<ScrollPane xmlns="http://javafx.com/javafx/27"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.gestion.controller.ProductsController"
+            fitToWidth="true"
+            hbarPolicy="NEVER"
+            vbarPolicy="AS_NEEDED"
+            styleClass="products-scroll">
+
+    <content>
+        <VBox spacing="20"
+              styleClass="products-page">
+
+            <!-- TITRE -->
+            <VBox spacing="8">
+                <Label text="Gestion des produits"
+                       styleClass="page-title"/>
+
+                <Label text="Gérez le catalogue des produits de votre entreprise."
+                       styleClass="page-subtitle"/>
+            </VBox>
+
+            <!-- STATISTIQUES -->
+            <GridPane hgap="15" vgap="15">
+
+                <VBox GridPane.columnIndex="0"
+                      GridPane.rowIndex="0"
+                      spacing="10"
+                      styleClass="card">
+
+                    <Label text="Nombre de produits"
+                           styleClass="secondary-text"/>
+
+                    <Label fx:id="totalProductsLabel"
+                           text="0"
+                           styleClass="stat-value"/>
+                </VBox>
+
+                <VBox GridPane.columnIndex="1"
+                      GridPane.rowIndex="0"
+                      spacing="10"
+                      styleClass="card">
+
+                    <Label text="Catégories"
+                           styleClass="secondary-text"/>
+
+                    <Label text="2"
+                           styleClass="stat-value"/>
+                </VBox>
+
+                <VBox GridPane.columnIndex="2"
+                      GridPane.rowIndex="0"
+                      spacing="10"
+                      styleClass="card">
+
+                    <Label text="Stock faible"
+                           styleClass="secondary-text"/>
+
+                    <Label text="0"
+                           styleClass="stat-value"/>
+                </VBox>
+
+            </GridPane>
+
+            <!-- LISTE DES PRODUITS -->
+            <VBox spacing="15">
+
+                <Label text="Liste des produits"
+                       styleClass="section-title"/>
+
+                <!-- RECHERCHE ET AJOUT -->
+                <HBox spacing="12"
+                      alignment="CENTER_LEFT">
+
+                    <TextField fx:id="searchField"
+                               promptText="Rechercher par nom ou référence..."
+                               prefHeight="40"
+                               HBox.hgrow="ALWAYS"/>
+
+                    <Button text="+ Ajouter un produit"
+                            onAction="#openProductForm"
+                            styleClass="button, primary-button"/>
+
+                     <Button text="Gérer les catégories"
+                            onAction="#openCategoryManagement"
+                            styleClass="secondary-button"/>
+                </HBox>
+
+                <!-- TABLEAU -->
+                     <TableView fx:id="productsTable"
+                            styleClass="products-table">
+
+                    <columns>
+
+                        <TableColumn fx:id="referenceColumn"
+                                     text="Référence"
+                                     prefWidth="125"/>
+
+                        <TableColumn fx:id="nameColumn"
+                                     text="Nom du produit"
+                                     prefWidth="190"/>
+
+                        <TableColumn fx:id="categoryColumn"
+                                     text="Catégorie"
+                                     prefWidth="150"/>
+
+                        <TableColumn fx:id="priceColumn"
+                                     text="Prix de vente (MAD)"
+                                     prefWidth="165"/>
+
+                        <TableColumn fx:id="quantityColumn"
+                                     text="Quantité"
+                                     prefWidth="100"/>
+
+                        <TableColumn fx:id="actionsColumn"
+                                     text="Actions"
+                                     prefWidth="190"
+                                     sortable="false"
+                                     resizable="false"/>
+
+                    </columns>
+                </TableView>
+
+            </VBox>
+
+        </VBox>
+    </content>
+
+</ScrollPane>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/27"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.gestion.controller.CategoryDeleteConfirmationController"
+      alignment="CENTER_LEFT"
+      spacing="20"
+      prefWidth="460"
+      minWidth="420"
+      styleClass="products-page">
+
+    <padding>
+        <Insets top="30" right="30" bottom="30" left="30"/>
+    </padding>
+
+    <VBox spacing="12">
+
+        <Label text="⚠"
+               styleClass="delete-warning-icon"/>
+
+        <Label text="Supprimer cette catégorie ?"
+               styleClass="page-title"/>
+
+        <Label text="Cette action nécessite votre confirmation."
+               styleClass="page-subtitle"/>
+
+    </VBox>
+
+    <VBox spacing="8"
+          styleClass="delete-info-card">
+
+        <Label text="Catégorie concernée"
+               styleClass="secondary-text"/>
+
+        <Label fx:id="categoryNameLabel"
+               text="Nom de la catégorie"
+               styleClass="section-title"/>
+
+    </VBox>
+
+    <Label text="Cette opération supprimera définitivement cette catégorie. Elle ne pourra pas être récupérée."
+           wrapText="true"
+           styleClass="page-subtitle"/>
+
+    <Region VBox.vgrow="ALWAYS"/>
+
+    <HBox alignment="CENTER_RIGHT" spacing="12">
+
+        <Button text="Annuler"
+                onAction="#cancel"
+                styleClass="secondary-button"/>
+
+        <Button text="Supprimer définitivement"
+                onAction="#confirmDelete"
+                styleClass="danger-button"/>
+
+    </HBox>
+
+</VBox>

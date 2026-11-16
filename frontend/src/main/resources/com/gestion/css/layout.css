@@ -1,0 +1,87 @@
+
+/* =====================================
+   GESTION COMMERCIALE ERP
+   LAYOUT DESIGN SYSTEM
+   ===================================== */
+
+
+/* =====================================
+   1. SIDEBAR
+   ===================================== */
+
+.sidebar {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: transparent #E1E7E3 transparent transparent;
+    -fx-border-width: 0 1px 0 0;
+    -fx-padding: 20px 12px;
+}
+
+.sidebar-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #24483D;
+}
+
+
+/* =====================================
+   2. NAVIGATION
+   ===================================== */
+
+.nav-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #59665F;
+    -fx-font-size: 13px;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 11px 14px;
+    -fx-background-radius: 7px;
+    -fx-cursor: hand;
+}
+
+.nav-button:hover {
+    -fx-background-color: #EEF3F0;
+    -fx-text-fill: #24483D;
+}
+
+.nav-button-active {
+    -fx-background-color: #E8F0EB;
+    -fx-text-fill: #24483D;
+    -fx-font-weight: bold;
+}
+
+
+/* =====================================
+   3. HEADER
+   ===================================== */
+
+.header {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: transparent transparent #E1E7E3 transparent;
+    -fx-border-width: 0 0 1px 0;
+    -fx-padding: 14px 24px;
+}
+
+
+/* =====================================
+   4. ZONE DE CONTENU
+   ===================================== */
+
+.content-area {
+    -fx-background-color: #F4F6F8;
+    -fx-padding: 24px;
+}
+
+
+/* =====================================
+   5. TITRES
+   ===================================== */
+
+.page-title {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #202B26;
+}
+
+.page-subtitle {
+    -fx-font-size: 13px;
+    -fx-text-fill: #6B7771;
+}

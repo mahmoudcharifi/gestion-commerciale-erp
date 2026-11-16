@@ -1,0 +1,107 @@
+
+/* =====================================
+   GESTION COMMERCIALE ERP
+   TABLES DESIGN SYSTEM
+   ===================================== */
+
+
+/* =====================================
+   1. TABLEVIEW PRINCIPAL
+   ===================================== */
+
+.table-view {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #E1E7E3;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-padding: 0;
+}
+
+
+/* =====================================
+   2. EN-TETE DES COLONNES
+   ===================================== */
+
+.table-view .column-header-background {
+    -fx-background-color: #F0F3F1;
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+    -fx-size: 42px;
+    -fx-border-color: transparent transparent #E1E7E3 transparent;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: #46564D;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 0 10px;
+}
+
+
+/* =====================================
+   3. CELLULES
+   ===================================== */
+
+.table-view .table-cell {
+    -fx-text-fill: #202B26;
+    -fx-font-size: 13px;
+    -fx-padding: 12px 10px;
+    -fx-border-color: transparent;
+}
+
+
+/* =====================================
+   4. LIGNES
+   ===================================== */
+
+.table-row-cell {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: transparent transparent #EEF1EF transparent;
+}
+
+.table-row-cell:odd {
+    -fx-background-color: #FAFBFA;
+}
+
+.table-row-cell:hover {
+    -fx-background-color: #F0F5F2;
+}
+
+
+/* =====================================
+   5. SELECTION
+   ===================================== */
+
+.table-row-cell:selected {
+    -fx-background-color: #E2EEE7;
+}
+
+.table-row-cell:selected .table-cell {
+    -fx-text-fill: #24483D;
+}
+
+
+/* =====================================
+   6. PLACEHOLDER
+   ===================================== */
+
+.table-view .placeholder .label {
+    -fx-text-fill: #8A968F;
+    -fx-font-size: 13px;
+}
+
+
+/* Tableau sans défilement interne */
+.products-table {
+    -fx-background-color: transparent;
+    -fx-border-color: #E1E7E3;
+    -fx-border-radius: 8px;
+}
+
+/* Lignes du tableau */
+.products-table .table-row-cell {
+    -fx-cell-size: 48px;
+}

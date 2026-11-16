@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+
+<BorderPane xmlns="http://javafx.com/javafx/27"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.gestion.controller.MainLayoutController"
+            prefWidth="1200"
+            prefHeight="750">
+
+    <stylesheets>
+        <URL value="@../css/theme-light.css"/>
+        <URL value="@../css/components.css"/>
+        <URL value="@../css/layout.css"/>
+        <URL value="@../css/tables.css"/>
+    </stylesheets>
+
+    <!-- SIDEBAR -->
+    <left>
+        <VBox prefWidth="240"
+              spacing="20"
+              styleClass="sidebar">
+
+            <Label text="GESTION ERP"
+                   styleClass="sidebar-title"/>
+
+            <Label text="MENU PRINCIPAL"
+                   styleClass="secondary-text"/>
+
+            <Button fx:id="dashboardNavButton"
+                    text="Tableau de bord"
+                    maxWidth="Infinity"
+                    onAction="#showDashboard"
+                    styleClass="button, nav-button"/>
+
+            <Button fx:id="productsNavButton"
+                    text="Produits"
+                    maxWidth="Infinity"
+                    onAction="#showProducts"
+                    styleClass="button, nav-button"/>
+            <Button fx:id="categoriesNavButton"
+                text="Catégories"
+                maxWidth="Infinity"
+                onAction="#showCategories"
+                styleClass="button, nav-button"/>
+
+            <Button text="Clients"
+                    maxWidth="Infinity"
+                    styleClass="button, nav-button"/>
+
+            <Button text="Fournisseurs"
+                    maxWidth="Infinity"
+                    styleClass="button, nav-button"/>
+
+            <Button text="Ventes"
+                    maxWidth="Infinity"
+                    styleClass="button, nav-button"/>
+
+            <Button text="Achats"
+                    maxWidth="Infinity"
+                    styleClass="button, nav-button"/>
+
+            <Button fx:id="stockNavButton"
+                    text="Stock"
+                    maxWidth="Infinity"
+                    onAction="#showStock"
+                    styleClass="button, nav-button"/>
+
+            <Button text="Factures"
+                    maxWidth="Infinity"
+                    styleClass="button, nav-button"/>
+
+        </VBox>
+    </left>
+
+    <!-- HEADER -->
+    <top>
+        <HBox spacing="15"
+              alignment="CENTER_LEFT"
+              styleClass="header">
+
+            <Label text="Tableau de bord"
+                   styleClass="page-title"/>
+
+        </HBox>
+    </top>
+
+    <!-- MAIN CONTENT -->
+    <center>
+        <StackPane fx:id="contentArea"
+                   styleClass="content-area">
+
+            <Label text="Bienvenue dans votre application de gestion commerciale"
+                   styleClass="page-subtitle"/>
+
+        </StackPane>
+    </center>
+
+</BorderPane>

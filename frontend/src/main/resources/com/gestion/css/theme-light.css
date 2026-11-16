@@ -1,0 +1,40 @@
+
+/* =====================================
+   GESTION COMMERCIALE ERP
+   THEME : LIGHT
+   ===================================== */
+
+/* Arrière-plan général */
+.root {
+    -fx-background-color: #F4F6F8;
+}
+
+/* Couleur principale du texte */
+.label {
+    -fx-text-fill: #202B26;
+}
+
+/* Titres */
+.page-title {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #202B26;
+}
+
+/* Texte secondaire */
+.secondary-text {
+    -fx-text-fill: #6B7771;
+}
+
+/* Cartes */
+.card {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 10px;
+    -fx-border-color: #E1E7E3;
+    -fx-border-radius: 10px;
+}
+
+/* Couleur principale */
+.primary-text {
+    -fx-text-fill: #24483D;
+}

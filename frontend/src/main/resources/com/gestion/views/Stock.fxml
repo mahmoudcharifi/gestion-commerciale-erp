@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/27"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.gestion.controller.StockController"
+      spacing="22"
+      styleClass="products-page">
+
+    <padding>
+        <Insets top="30" right="30" bottom="30" left="30"/>
+    </padding>
+
+    <VBox spacing="7">
+        <Label text="Gestion du stock"
+               styleClass="page-title"/>
+
+        <Label text="Suivez les quantités disponibles et les niveaux de stock de vos produits."
+               styleClass="page-subtitle"/>
+    </VBox>
+
+    <!-- INDICATEURS -->
+    <HBox spacing="15">
+
+        <VBox spacing="10" HBox.hgrow="ALWAYS"
+              styleClass="stat-card">
+            <Label text="Total des produits"/>
+            <Label fx:id="totalProductsLabel"
+                   text="0"
+                   styleClass="stat-value"/>
+        </VBox>
+
+        <VBox spacing="10" HBox.hgrow="ALWAYS"
+              styleClass="stat-card">
+            <Label text="Valeur du stock (MAD)"/>
+            <Label fx:id="stockValueLabel"
+                   text="0.00"
+                   styleClass="stat-value"/>
+        </VBox>
+
+        <VBox spacing="10" HBox.hgrow="ALWAYS"
+              styleClass="stat-card">
+            <Label text="Stock faible"/>
+            <Label fx:id="lowStockLabel"
+                   text="0"
+                   styleClass="stat-value"/>
+        </VBox>
+
+        <VBox spacing="10" HBox.hgrow="ALWAYS"
+              styleClass="stat-card">
+            <Label text="Rupture de stock"/>
+            <Label fx:id="outOfStockLabel"
+                   text="0"
+                   styleClass="stat-value"/>
+        </VBox>
+
+    </HBox>
+
+    <!-- TABLEAU -->
+    <VBox spacing="15" VBox.vgrow="ALWAYS">
+
+        <HBox alignment="CENTER_LEFT" spacing="10">
+            <VBox spacing="5">
+                <Label text="État du stock"
+                       styleClass="section-title"/>
+
+                <Label text="Consultez les quantités et les alertes de vos produits."
+                       styleClass="page-subtitle"/>
+            </VBox>
+
+            <Region HBox.hgrow="ALWAYS"/>
+        </HBox>
+
+        <TableView fx:id="stockTable"
+                   VBox.vgrow="ALWAYS"
+                   minHeight="250">
+
+            <columns>
+
+                <TableColumn fx:id="referenceColumn"
+                             text="Référence"
+                             prefWidth="120"/>
+
+                <TableColumn fx:id="nameColumn"
+                             text="Produit"
+                             prefWidth="190"/>
+
+                <TableColumn fx:id="categoryColumn"
+                             text="Catégorie"
+                             prefWidth="160"/>
+
+                <TableColumn fx:id="quantityColumn"
+                             text="Quantité"
+                             prefWidth="100"/>
+
+                <TableColumn fx:id="thresholdColumn"
+                             text="Seuil minimal"
+                             prefWidth="120"/>
+
+                <TableColumn fx:id="statusColumn"
+                             text="Statut"
+                             prefWidth="140"/>
+
+            </columns>
+
+            <placeholder>
+                <Label text="Aucun produit disponible."
+                       styleClass="page-subtitle"/>
+            </placeholder>
+
+        </TableView>
+
+    </VBox>
+
+</VBox>

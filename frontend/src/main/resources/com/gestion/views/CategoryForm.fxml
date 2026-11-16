@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/27"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.gestion.controller.CategoryFormController"
+      spacing="22"
+      prefWidth="520"
+      minWidth="420"
+      styleClass="products-page">
+
+    <padding>
+        <Insets top="28" right="30" bottom="28" left="30"/>
+    </padding>
+
+    <VBox spacing="7">
+        <Label fx:id="formTitle"
+               text="Nouvelle catégorie"
+               styleClass="page-title"/>
+
+        <Label text="Renseignez les informations de la catégorie."
+               styleClass="page-subtitle"/>
+    </VBox>
+
+    <VBox spacing="8">
+        <Label text="Nom de la catégorie *"/>
+        <TextField fx:id="nameField"
+                   promptText="Ex : Informatique"
+                   prefHeight="42"/>
+    </VBox>
+
+    <VBox spacing="8">
+        <Label text="Description"/>
+        <TextField fx:id="descriptionField"
+                   promptText="Description de la catégorie"
+                   prefHeight="42"/>
+    </VBox>
+
+    <Label fx:id="errorLabel"
+           text=""
+           visible="false"
+           managed="false"
+           styleClass="form-error"/>
+
+    <Region VBox.vgrow="ALWAYS"/>
+
+    <HBox alignment="CENTER_RIGHT" spacing="12">
+        <Button text="Annuler"
+                onAction="#cancel"
+                styleClass="secondary-button"/>
+
+        <Button text="Enregistrer"
+                onAction="#save"
+                styleClass="primary-button"/>
+    </HBox>
+
+</VBox>

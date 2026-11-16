@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.Label?>
+
+<VBox xmlns="http://javafx.com/javafx/27"
+      xmlns:fx="http://javafx.com/fxml/1"
+      spacing="22"
+      styleClass="dashboard-page">
+
+    <VBox spacing="7">
+        <Label text="Tableau de bord"
+               styleClass="page-title"/>
+
+        <Label text="Bienvenue dans votre espace de gestion commerciale."
+               styleClass="page-subtitle"/>
+    </VBox>
+
+    <GridPane hgap="15" vgap="15">
+
+        <VBox GridPane.columnIndex="0"
+              GridPane.rowIndex="0"
+              spacing="12"
+              styleClass="card">
+
+            <Label text="Chiffre d'affaires"
+                   styleClass="secondary-text"/>
+
+            <Label text="0,00 MAD"
+                   styleClass="dashboard-stat-value"/>
+
+            <Label text="Total des ventes"
+                   styleClass="secondary-text"/>
+        </VBox>
+
+        <VBox GridPane.columnIndex="1"
+              GridPane.rowIndex="0"
+              spacing="12"
+              styleClass="card">
+
+            <Label text="Produits"
+                   styleClass="secondary-text"/>
+
+            <Label text="3"
+                   styleClass="dashboard-stat-value"/>
+
+            <Label text="Produits enregistrés"
+                   styleClass="secondary-text"/>
+        </VBox>
+
+        <VBox GridPane.columnIndex="2"
+              GridPane.rowIndex="0"
+              spacing="12"
+              styleClass="card">
+
+            <Label text="Clients"
+                   styleClass="secondary-text"/>
+
+            <Label text="0"
+                   styleClass="dashboard-stat-value"/>
+
+            <Label text="Clients enregistrés"
+                   styleClass="secondary-text"/>
+        </VBox>
+
+        <VBox GridPane.columnIndex="3"
+              GridPane.rowIndex="0"
+              spacing="12"
+              styleClass="card">
+
+            <Label text="Stock faible"
+                   styleClass="secondary-text"/>
+
+            <Label text="0"
+                   styleClass="dashboard-stat-value"/>
+
+            <Label text="Produits à réapprovisionner"
+                   styleClass="secondary-text"/>
+        </VBox>
+
+    </GridPane>
+
+    <VBox spacing="15">
+        <Label text="Activité récente"
+               styleClass="section-title"/>
+
+        <VBox spacing="12"
+              styleClass="card">
+
+            <Label text="Aucune activité récente pour le moment."
+                   styleClass="secondary-text"/>
+
+        </VBox>
+    </VBox>
+
+</VBox>
