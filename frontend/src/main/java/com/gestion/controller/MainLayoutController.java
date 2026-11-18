@@ -77,7 +77,10 @@ public class MainLayoutController {
 
         dashboardNavButton.getStyleClass()
                 .remove("nav-button-active");
-                
+        
+        clientsNavButton.getStyleClass()
+            .remove("nav-button-active");
+
         stockNavButton.getStyleClass()
         .remove("nav-button-active");
 
@@ -97,4 +100,15 @@ public class MainLayoutController {
 
         System.out.println("Page Stock ouverte !");
     }
+
+    @FXML
+    private Button clientsNavButton;
+    @FXML
+    private void showClients() throws IOException {
+
+        navigationManager.navigateTo("Clients");
+        setActiveButton(clientsNavButton);
+
+        System.out.println("Page Clients ouverte !");
+}
 }

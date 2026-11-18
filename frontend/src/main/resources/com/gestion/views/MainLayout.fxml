@@ -50,8 +50,10 @@
                 onAction="#showCategories"
                 styleClass="button, nav-button"/>
 
-            <Button text="Clients"
+            <Button fx:id="clientsNavButton"
+                    text="Clients"
                     maxWidth="Infinity"
+                    onAction="#showClients"
                     styleClass="button, nav-button"/>
 
             <Button text="Fournisseurs"
