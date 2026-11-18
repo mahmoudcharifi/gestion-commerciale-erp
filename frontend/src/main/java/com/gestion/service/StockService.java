@@ -118,4 +118,13 @@ public class StockService {
             );
         }
     }
+
+    private static final StockService INSTANCE = new StockService();
+
+    private StockService() {
+    }
+
+    public static StockService getInstance() {
+        return INSTANCE;
+    }
 }

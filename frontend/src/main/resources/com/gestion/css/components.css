@@ -173,3 +173,189 @@
     -fx-border-radius: 10px;
     -fx-padding: 16px;
 }
+
+
+/* =====================================
+   STOCK MOVEMENT FORM
+   ===================================== */
+
+.dialog-container {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 14px;
+}
+
+.dialog-container .page-title {
+    -fx-font-size: 22px;
+    -fx-text-fill: #202B26;
+}
+
+.dialog-container .page-subtitle {
+    -fx-font-size: 12px;
+    -fx-text-fill: #6B7771;
+}
+
+.dialog-container .label {
+    -fx-font-family: "Inter", "Arial";
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #35443D;
+}
+
+/* Champs de saisie */
+.dialog-container .text-field {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #DCE3DF;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-padding: 11px 12px;
+    -fx-font-size: 13px;
+}
+
+.dialog-container .text-field:focused {
+    -fx-border-color: #24483D;
+    -fx-border-width: 1.5px;
+}
+
+/* Liste déroulante */
+.dialog-container .combo-box {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #DCE3DF;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-padding: 5px 8px;
+}
+
+.dialog-container .combo-box:hover {
+    -fx-border-color: #24483D;
+}
+
+.dialog-container .combo-box .list-cell {
+    -fx-background-color: #FFFFFF;
+    -fx-text-fill: #202B26;
+    -fx-padding: 9px 12px;
+}
+
+.dialog-container .combo-box-popup .list-view {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #E1E7E3;
+}
+
+.dialog-container .combo-box-popup .list-cell:hover {
+    -fx-background-color: #E8F0EB;
+    -fx-text-fill: #24483D;
+}
+
+.dialog-container .combo-box-popup .list-cell:selected {
+    -fx-background-color: #E8F0EB;
+    -fx-text-fill: #24483D;
+}
+
+/* Boutons */
+.dialog-container .primary-button {
+    -fx-background-color: #24483D;
+    -fx-text-fill: #FFFFFF;
+    -fx-background-radius: 8px;
+    -fx-padding: 11px 18px;
+}
+
+.dialog-container .primary-button:hover {
+    -fx-background-color: #315F50;
+}
+
+.dialog-container .secondary-button {
+    -fx-background-color: #FFFFFF;
+    -fx-text-fill: #24483D;
+    -fx-border-color: #D5DED9;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-padding: 11px 18px;
+}
+
+
+/* STOCK MOVEMENT DIALOG */
+
+.stock-movement-dialog {
+    -fx-background-color: #FFFFFF;
+    -fx-padding: 28px;
+    -fx-background-radius: 14px;
+}
+
+.stock-movement-dialog .label {
+    -fx-text-fill: #202B26;
+    -fx-font-size: 13px;
+}
+
+.stock-movement-dialog .page-title {
+    -fx-font-size: 23px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #202B26;
+}
+
+.stock-movement-dialog .page-subtitle {
+    -fx-font-size: 12px;
+    -fx-text-fill: #6B7771;
+}
+
+.stock-movement-dialog .text-field,
+.stock-movement-dialog .combo-box {
+    -fx-pref-height: 43px;
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #DCE3DF;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-font-size: 13px;
+}
+
+.stock-movement-dialog .text-field:focused,
+.stock-movement-dialog .combo-box:focused {
+    -fx-border-color: #24483D;
+    -fx-border-width: 1.5px;
+}
+
+.stock-movement-dialog .primary-button {
+    -fx-background-color: #24483D;
+    -fx-text-fill: white;
+    -fx-background-radius: 8px;
+    -fx-padding: 12px 18px;
+}
+
+.stock-movement-dialog .secondary-button {
+    -fx-background-color: #FFFFFF;
+    -fx-text-fill: #24483D;
+    -fx-border-color: #DCE3DF;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-padding: 12px 18px;
+}
+
+/* STOCK PAGE SCROLLING */
+
+.products-scroll {
+    -fx-background-color: #F4F6F8;
+    -fx-background: #F4F6F8;
+    -fx-border-color: transparent;
+}
+
+.products-scroll > .viewport {
+    -fx-background-color: #F4F6F8;
+}
+
+.products-scroll .scroll-bar:vertical {
+    -fx-background-color: transparent;
+    -fx-pref-width: 9px;
+}
+
+.products-scroll .scroll-bar:vertical .thumb {
+    -fx-background-color: #C5D1CA;
+    -fx-background-radius: 10px;
+}
+
+.products-scroll .scroll-bar:vertical .thumb:hover {
+    -fx-background-color: #24483D;
+}
+
+.products-scroll .scroll-bar .increment-button,
+.products-scroll .scroll-bar .decrement-button {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}

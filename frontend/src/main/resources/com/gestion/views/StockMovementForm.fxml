@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/27"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.gestion.controller.StockMovementFormController"
+      spacing="20"
+      prefWidth="500"
+      styleClass="stock-movement-dialog">
+
+    <padding>
+        <Insets top="24" right="24" bottom="24" left="24"/>
+    </padding>
+
+    <VBox spacing="5">
+        <Label fx:id="titleLabel"
+               text="Mouvement de stock"
+               styleClass="page-title"/>
+
+        <Label text="Renseignez les informations du mouvement."
+               styleClass="page-subtitle"/>
+    </VBox>
+
+    <VBox spacing="8">
+        <Label text="Produit"/>
+        <ComboBox fx:id="productComboBox"
+                  promptText="Sélectionner un produit"
+                  maxWidth="Infinity"/>
+    </VBox>
+
+    <VBox spacing="8">
+        <Label text="Quantité"/>
+        <TextField fx:id="quantityField"
+                   promptText="Exemple : 10"/>
+    </VBox>
+
+    <VBox spacing="8">
+        <Label text="Motif"/>
+        <TextField fx:id="reasonField"
+                   promptText="Exemple : Réapprovisionnement"/>
+    </VBox>
+
+    <HBox alignment="CENTER_RIGHT" spacing="10">
+        <Button text="Annuler"
+                onAction="#handleCancel"
+                styleClass="secondary-button"/>
+
+        <Button fx:id="confirmButton"
+                text="Valider"
+                onAction="#handleConfirm"
+                styleClass="primary-button"/>
+    </HBox>
+
+</VBox>

@@ -4,6 +4,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
@@ -11,22 +13,23 @@
 <VBox xmlns="http://javafx.com/javafx/27"
       xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="com.gestion.controller.StockController"
-      spacing="22"
+      spacing="15"
       styleClass="products-page">
 
     <padding>
-        <Insets top="30" right="30" bottom="30" left="30"/>
+        <Insets top="25" right="30" bottom="20" left="30"/>
     </padding>
 
+                    <!-- EN-TÊTE -->
     <VBox spacing="7">
         <Label text="Gestion du stock"
-               styleClass="page-title"/>
+                           styleClass="page-title"/>
 
         <Label text="Suivez les quantités disponibles et les niveaux de stock de vos produits."
-               styleClass="page-subtitle"/>
+                           styleClass="page-subtitle"/>
     </VBox>
 
-    <!-- INDICATEURS -->
+    <!-- INDICATEURS FIXES -->
     <HBox spacing="15">
 
         <VBox spacing="10" HBox.hgrow="ALWAYS"
@@ -63,60 +66,145 @@
 
     </HBox>
 
-    <!-- TABLEAU -->
-    <VBox spacing="15" VBox.vgrow="ALWAYS">
+    <!-- ZONE DÉFILANTE -->
+    <ScrollPane fitToWidth="true"
+                fitToHeight="false"
+                hbarPolicy="NEVER"
+                vbarPolicy="AS_NEEDED"
+                VBox.vgrow="ALWAYS"
+                styleClass="products-scroll">
 
-        <HBox alignment="CENTER_LEFT" spacing="10">
-            <VBox spacing="5">
-                <Label text="État du stock"
-                       styleClass="section-title"/>
+        <content>
 
-                <Label text="Consultez les quantités et les alertes de vos produits."
-                       styleClass="page-subtitle"/>
+            <VBox spacing="22" fillWidth="true">
+
+                <!-- ÉTAT DU STOCK -->
+                <VBox spacing="15">
+
+                    <HBox alignment="CENTER_LEFT" spacing="12">
+
+                        <VBox spacing="5">
+                            <Label text="État du stock"
+                                   styleClass="section-title"/>
+
+                            <Label text="Consultez les quantités et les alertes de vos produits."
+                                   styleClass="page-subtitle"/>
+                        </VBox>
+
+                        <Region HBox.hgrow="ALWAYS"/>
+
+                        <Button text="+ Entrée de stock"
+                                onAction="#openEntryForm"
+                                styleClass="primary-button"/>
+
+                        <Button text="- Sortie de stock"
+                                onAction="#openExitForm"
+                                styleClass="secondary-button"/>
+
+                    </HBox>
+
+                    <TableView fx:id="stockTable"
+                               prefHeight="260"
+                               minHeight="200">
+
+                        <columns>
+                            <TableColumn fx:id="referenceColumn"
+                                         text="Référence"
+                                         prefWidth="120"/>
+
+                            <TableColumn fx:id="nameColumn"
+                                         text="Produit"
+                                         prefWidth="190"/>
+
+                            <TableColumn fx:id="categoryColumn"
+                                         text="Catégorie"
+                                         prefWidth="160"/>
+
+                            <TableColumn fx:id="quantityColumn"
+                                         text="Quantité"
+                                         prefWidth="100"/>
+
+                            <TableColumn fx:id="thresholdColumn"
+                                         text="Seuil minimal"
+                                         prefWidth="120"/>
+
+                            <TableColumn fx:id="statusColumn"
+                                         text="Statut"
+                                         prefWidth="140"/>
+                        </columns>
+
+                        <placeholder>
+                            <Label text="Aucun produit disponible."
+                                   styleClass="page-subtitle"/>
+                        </placeholder>
+
+                    </TableView>
+
+                </VBox>
+
+                <!-- HISTORIQUE DES MOUVEMENTS -->
+                <VBox spacing="15">
+
+                    <HBox alignment="CENTER_LEFT" spacing="12">
+
+                        <VBox spacing="5">
+                            <Label text="Historique des mouvements"
+                                   styleClass="section-title"/>
+
+                            <Label text="Suivez toutes les entrées et sorties de votre stock."
+                                   styleClass="page-subtitle"/>
+                        </VBox>
+
+                        <Region HBox.hgrow="ALWAYS"/>
+
+                        <Label text="Mouvements récents"
+                               styleClass="secondary-text"/>
+
+                    </HBox>
+
+                    <TableView fx:id="movementTable"
+                               prefHeight="250"
+                               minHeight="180">
+
+                        <columns>
+                            <TableColumn fx:id="movementDateColumn"
+                                         text="Date"
+                                         prefWidth="165"/>
+
+                            <TableColumn fx:id="movementReferenceColumn"
+                                         text="Référence"
+                                         prefWidth="120"/>
+
+                            <TableColumn fx:id="movementProductColumn"
+                                         text="Produit"
+                                         prefWidth="180"/>
+
+                            <TableColumn fx:id="movementTypeColumn"
+                                         text="Type"
+                                         prefWidth="110"/>
+
+                            <TableColumn fx:id="movementQuantityColumn"
+                                         text="Quantité"
+                                         prefWidth="100"/>
+
+                            <TableColumn fx:id="movementReasonColumn"
+                                         text="Motif"
+                                         prefWidth="200"/>
+                        </columns>
+
+                        <placeholder>
+                            <Label text="Aucun mouvement enregistré."
+                                   styleClass="page-subtitle"/>
+                        </placeholder>
+
+                    </TableView>
+
+                </VBox>
+
             </VBox>
 
-            <Region HBox.hgrow="ALWAYS"/>
-        </HBox>
+        </content>
 
-        <TableView fx:id="stockTable"
-                   VBox.vgrow="ALWAYS"
-                   minHeight="250">
-
-            <columns>
-
-                <TableColumn fx:id="referenceColumn"
-                             text="Référence"
-                             prefWidth="120"/>
-
-                <TableColumn fx:id="nameColumn"
-                             text="Produit"
-                             prefWidth="190"/>
-
-                <TableColumn fx:id="categoryColumn"
-                             text="Catégorie"
-                             prefWidth="160"/>
-
-                <TableColumn fx:id="quantityColumn"
-                             text="Quantité"
-                             prefWidth="100"/>
-
-                <TableColumn fx:id="thresholdColumn"
-                             text="Seuil minimal"
-                             prefWidth="120"/>
-
-                <TableColumn fx:id="statusColumn"
-                             text="Statut"
-                             prefWidth="140"/>
-
-            </columns>
-
-            <placeholder>
-                <Label text="Aucun produit disponible."
-                       styleClass="page-subtitle"/>
-            </placeholder>
-
-        </TableView>
-
-    </VBox>
+    </ScrollPane>
 
 </VBox>
