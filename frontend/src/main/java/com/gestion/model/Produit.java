@@ -12,6 +12,9 @@ public class Produit {
     private BigDecimal prixVente;
     private int quantite;
     private int seuilMinimal;
+    private BigDecimal tauxTVA;
+    
+    
 
     // Constructeur
     public Produit(
@@ -27,6 +30,7 @@ public class Produit {
         this.prixVente = prixVente;
         this.quantite = quantite;
         this.seuilMinimal = 5;
+        this.tauxTVA = BigDecimal.ZERO;
     }
 
     // Getters
@@ -88,14 +92,31 @@ public class Produit {
     // Statut du stock
     public String getStatutStock() {
 
-        if (quantite == 0) {
-            return "Rupture";
+            if (quantite == 0) {
+                return "Rupture";
+            }
+
+            if (quantite <= seuilMinimal) {
+                return "Stock faible";
+            }
+
+            return "Disponible";
+        }
+        public BigDecimal getTauxTVA() {
+        return tauxTVA;
+    }
+
+    public void setTauxTVA(BigDecimal tauxTVA) {
+
+        if (tauxTVA == null
+                || tauxTVA.compareTo(BigDecimal.ZERO) < 0
+                || tauxTVA.compareTo(new BigDecimal("100")) > 0) {
+
+            throw new IllegalArgumentException(
+                    "Le taux de TVA doit être compris entre 0 et 100 %."
+            );
         }
 
-        if (quantite <= seuilMinimal) {
-            return "Stock faible";
-        }
-
-        return "Disponible";
+        this.tauxTVA = tauxTVA;
     }
 }

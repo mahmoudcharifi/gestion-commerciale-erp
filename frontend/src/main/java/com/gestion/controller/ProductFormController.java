@@ -31,6 +31,9 @@ public class ProductFormController {
     private TextField quantityField;
 
     @FXML
+    private TextField tauxTVAField;
+
+    @FXML
     private Label errorLabel;
 
     private Stage stage;
@@ -46,6 +49,7 @@ public class ProductFormController {
     }
 
     private void loadCategories() {
+
         categoryComboBox.getItems().clear();
 
         for (Categorie categorie : categorieService.getAllCategories()) {
@@ -63,7 +67,9 @@ public class ProductFormController {
 
     @FXML
     private void saveProduct() {
+
         try {
+
             String reference = referenceField.getText().trim();
             String nom = nameField.getText().trim();
             String categorie = categoryComboBox.getValue();
@@ -72,9 +78,12 @@ public class ProductFormController {
                     || nom.isEmpty()
                     || categorie == null
                     || priceField.getText().isBlank()
-                    || quantityField.getText().isBlank()) {
+                    || quantityField.getText().isBlank()
+                    || tauxTVAField.getText().isBlank()) {
 
-                errorLabel.setText("Veuillez remplir tous les champs.");
+                errorLabel.setText(
+                        "Veuillez remplir tous les champs."
+                );
                 return;
             }
 
@@ -86,9 +95,23 @@ public class ProductFormController {
                     quantityField.getText().trim()
             );
 
+            BigDecimal tauxTVA = new BigDecimal(
+                    tauxTVAField.getText().trim().replace(',', '.')
+            );
+
             if (prix.compareTo(BigDecimal.ZERO) < 0 || quantite < 0) {
+
                 errorLabel.setText(
                         "Le prix et la quantité doivent être positifs."
+                );
+                return;
+            }
+
+            if (tauxTVA.compareTo(BigDecimal.ZERO) < 0
+                    || tauxTVA.compareTo(new BigDecimal("100")) > 0) {
+
+                errorLabel.setText(
+                        "Le taux de TVA doit être compris entre 0 et 100 %."
                 );
                 return;
             }
@@ -96,14 +119,17 @@ public class ProductFormController {
             Produit produit;
 
             if (productToEdit != null) {
+
                 produit = productToEdit;
 
                 produit.setNom(nom);
                 produit.setCategorie(categorie);
                 produit.setPrixVente(prix);
                 produit.setQuantite(quantite);
+                produit.setTauxTVA(tauxTVA);
 
             } else {
+
                 produit = new Produit(
                         reference,
                         nom,
@@ -111,19 +137,30 @@ public class ProductFormController {
                         prix,
                         quantite
                 );
+
+                produit.setTauxTVA(tauxTVA);
             }
 
-            onProductCreated.accept(produit);
+            if (onProductCreated != null) {
+                onProductCreated.accept(produit);
+            }
+
             stage.close();
 
         } catch (NumberFormatException e) {
+
             errorLabel.setText(
-                    "Vérifiez le format du prix et de la quantité."
+                    "Vérifiez le format du prix, de la quantité et de la TVA."
             );
+
+        } catch (IllegalArgumentException e) {
+
+            errorLabel.setText(e.getMessage());
         }
     }
 
     public void setProductToEdit(Produit produit) {
+
         this.productToEdit = produit;
 
         referenceField.setText(produit.getReference());
@@ -131,5 +168,11 @@ public class ProductFormController {
         categoryComboBox.setValue(produit.getCategorie());
         priceField.setText(produit.getPrixVente().toString());
         quantityField.setText(String.valueOf(produit.getQuantite()));
+
+        tauxTVAField.setText(
+                produit.getTauxTVA() == null
+                        ? "0"
+                        : produit.getTauxTVA().toPlainString()
+        );
     }
 }

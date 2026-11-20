@@ -68,6 +68,15 @@
                    GridPane.columnIndex="1"
                    GridPane.rowIndex="4"/>
 
+        <Label text="Taux de TVA (%) :"
+               GridPane.columnIndex="0"
+               GridPane.rowIndex="5"/>
+
+        <TextField fx:id="tauxTVAField"
+                   promptText="Ex : 20"
+                   GridPane.columnIndex="1"
+                   GridPane.rowIndex="5"/>
+
     </GridPane>
 
     <Label fx:id="errorLabel"

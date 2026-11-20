@@ -69,20 +69,13 @@ public class MainLayoutController {
 
     private void setActiveButton(Button activeButton) {
 
-        productsNavButton.getStyleClass()
-                .remove("nav-button-active");
-
-        categoriesNavButton.getStyleClass()
-                .remove("nav-button-active");
-
-        dashboardNavButton.getStyleClass()
-                .remove("nav-button-active");
-        
-        clientsNavButton.getStyleClass()
-            .remove("nav-button-active");
-
-        stockNavButton.getStyleClass()
-        .remove("nav-button-active");
+        productsNavButton.getStyleClass().remove("nav-button-active");
+        categoriesNavButton.getStyleClass().remove("nav-button-active");
+        dashboardNavButton.getStyleClass().remove("nav-button-active");
+        clientsNavButton.getStyleClass().remove("nav-button-active");
+        suppliersNavButton.getStyleClass().remove("nav-button-active");
+        stockNavButton.getStyleClass().remove("nav-button-active");
+        salesNavButton.getStyleClass().remove("nav-button-active");
 
         if (!activeButton.getStyleClass().contains("nav-button-active")) {
             activeButton.getStyleClass().add("nav-button-active");
@@ -119,4 +112,16 @@ public class MainLayoutController {
         navigationManager.navigateTo("Suppliers");
         setActiveButton(suppliersNavButton);
     }
+
+
+    @FXML
+    private Button salesNavButton;
+    @FXML
+    private void showSales() throws IOException {
+
+        navigationManager.navigateTo("Sales");
+        setActiveButton(salesNavButton);
+
+        System.out.println("Page Ventes ouverte !");
+}
 }

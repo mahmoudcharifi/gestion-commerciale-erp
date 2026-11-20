@@ -13,6 +13,32 @@ public class ClientService {
 
     private long prochainId = 1;
     private long prochainCode = 1;
+    private Client clientComptoir;
+    public Client getClientComptoir() {
+
+        if (clientComptoir == null) {
+
+            clientComptoir = new Client(
+                    0L,
+                    "CLI-COMPT",
+                    TypeClient.PARTICULIER,
+                    "Comptoir",
+                    "Client",
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null
+            );
+
+        }
+
+        return clientComptoir;
+    }
 
     private static final ClientService INSTANCE = new ClientService();
 

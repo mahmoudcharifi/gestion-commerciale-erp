@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="18"
+      prefWidth="950"
+      prefHeight="760"
+      styleClass="products-page"
+      xmlns="http://javafx.com/javafx/27.0.1"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.gestion.controller.SaleFormController">
+
+    <padding>
+        <Insets top="25" right="30" bottom="25" left="30"/>
+    </padding>
+
+    <!-- EN-TÊTE -->
+    <HBox alignment="CENTER_LEFT" spacing="15">
+        <VBox spacing="5" HBox.hgrow="ALWAYS">
+            <Label text="Nouvelle vente" styleClass="page-title"/>
+            <Label text="Enregistrez une nouvelle opération commerciale"
+                   styleClass="page-subtitle"/>
+        </VBox>
+
+        <Label fx:id="saleReferenceLabel"
+               text="Nouvelle vente"
+               styleClass="secondary-text"/>
+    </HBox>
+
+    <!-- CLIENT -->
+    <VBox spacing="12" styleClass="card">
+        <Label text="1. Informations client" styleClass="section-title"/>
+
+        <HBox alignment="CENTER_LEFT" spacing="15">
+            <VBox spacing="6" HBox.hgrow="ALWAYS">
+                <Label text="Client *"/>
+                <ComboBox fx:id="clientComboBox"
+                          promptText="Sélectionner un client"
+                          maxWidth="Infinity"/>
+            </VBox>
+
+            <VBox spacing="6">
+                <Label text="Type de client"/>
+                <Label fx:id="clientTypeLabel"
+                       text="Non sélectionné"
+                       styleClass="secondary-text"/>
+            </VBox>
+        </HBox>
+    </VBox>
+
+    <!-- PRODUITS -->
+    <VBox spacing="12" styleClass="card">
+        <Label text="2. Ajouter des produits" styleClass="section-title"/>
+
+        <HBox alignment="CENTER_LEFT" spacing="12">
+            <VBox spacing="6" HBox.hgrow="ALWAYS">
+                <Label text="Produit"/>
+                <ComboBox fx:id="productComboBox"
+                          promptText="Choisir un produit"
+                          maxWidth="Infinity"/>
+            </VBox>
+
+            <VBox spacing="6">
+                <Label text="Quantité"/>
+                <TextField fx:id="quantityField"
+                           text="1"
+                           prefWidth="100"/>
+            </VBox>
+
+            <VBox spacing="6">
+                <Label text=" "/>
+                <Button text="+ Ajouter"
+                        onAction="#handleAddProduct"
+                        styleClass="primary-button"/>
+            </VBox>
+        </HBox>
+
+        <TableView fx:id="saleLinesTable" prefHeight="220">
+            <columns>
+                <TableColumn fx:id="productReferenceColumn"
+                             text="Référence" prefWidth="110"/>
+
+                <TableColumn fx:id="productNameColumn"
+                             text="Produit" prefWidth="200"/>
+
+                <TableColumn fx:id="productPriceColumn"
+                             text="Prix unitaire" prefWidth="130"/>
+
+                <TableColumn fx:id="productQuantityColumn"
+                             text="Quantité" prefWidth="100"/>
+
+                <TableColumn fx:id="productTotalColumn"
+                             text="Total HT" prefWidth="130"/>
+
+                <TableColumn fx:id="removeProductColumn"
+                             text="Action" prefWidth="100"
+                             sortable="false"/>
+            </columns>
+
+            <placeholder>
+                <Label text="Aucun produit ajouté à la vente."/>
+            </placeholder>
+        </TableView>
+    </VBox>
+
+    <!-- RÉCAPITULATIF -->
+    <VBox spacing="12" styleClass="card">
+        <Label text="3. Récapitulatif de la vente"
+               styleClass="section-title"/>
+
+        <HBox spacing="20">
+            <VBox spacing="6" HBox.hgrow="ALWAYS">
+                <Label text="Remise globale (DH)"/>
+                <TextField fx:id="discountField"
+                           text="0"
+                           promptText="Montant de la remise"/>
+            </VBox>
+
+            <VBox spacing="8" HBox.hgrow="ALWAYS">
+
+                <HBox alignment="CENTER_LEFT">
+                    <Label text="Total HT"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Label fx:id="totalHTLabel" text="0,00 DH"/>
+                </HBox>
+
+                <HBox alignment="CENTER_LEFT">
+                    <Label text="Remise"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Label fx:id="discountLabel" text="0,00 DH"/>
+                </HBox>
+
+                <HBox alignment="CENTER_LEFT">
+                    <Label text="TVA"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Label fx:id="vatLabel" text="0,00 DH"/>
+                </HBox>
+
+                <Separator/>
+
+                <HBox alignment="CENTER_LEFT">
+                    <Label text="Total TTC" styleClass="section-title"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Label fx:id="totalTTCLabel"
+                           text="0,00 DH"
+                           styleClass="stat-value"/>
+                </HBox>
+            </VBox>
+        </HBox>
+    </VBox>
+
+    <!-- MESSAGES -->
+    <Label fx:id="errorLabel"
+           wrapText="true"
+           styleClass="error-text"/>
+
+    <!-- BOUTONS -->
+    <HBox alignment="CENTER_RIGHT" spacing="12">
+        <Button text="Annuler"
+                onAction="#handleCancel"
+                styleClass="secondary-button"/>
+
+        <Button text="Enregistrer brouillon"
+                onAction="#handleSaveDraft"
+                styleClass="secondary-button"/>
+
+        <Button text="Valider la vente"
+                onAction="#handleValidateSale"
+                styleClass="primary-button"/>
+    </HBox>
+
+</VBox>

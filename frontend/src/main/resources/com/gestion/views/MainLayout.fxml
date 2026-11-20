@@ -61,8 +61,10 @@
                     onAction="#showSuppliers"
                     styleClass="nav-button"/>
 
-            <Button text="Ventes"
+            <Button fx:id="salesNavButton"
+                    text="Ventes"
                     maxWidth="Infinity"
+                    onAction="#showSales"
                     styleClass="button, nav-button"/>
 
             <Button text="Achats"

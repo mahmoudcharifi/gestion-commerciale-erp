@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="20"
+      styleClass="products-page"
+      xmlns="http://javafx.com/javafx/27.0.1"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.gestion.controller.SalesController">
+
+    <padding>
+        <Insets top="25" right="30" bottom="25" left="30"/>
+    </padding>
+
+    <!-- En-tête -->
+    <HBox alignment="CENTER_LEFT" spacing="15">
+
+        <VBox spacing="5" HBox.hgrow="ALWAYS">
+            <Label text="Gestion des ventes"
+                   styleClass="page-title"/>
+
+            <Label text="Suivez et gérez les ventes de votre entreprise"
+                   styleClass="page-subtitle"/>
+        </VBox>
+
+        <Button text="+ Nouvelle vente"
+                onAction="#handleAddSale"
+                styleClass="primary-button"/>
+
+    </HBox>
+
+    <!-- Statistiques -->
+    <HBox spacing="15">
+
+        <VBox spacing="8"
+              styleClass="stat-card"
+              HBox.hgrow="ALWAYS">
+
+            <Label text="Total des ventes"
+                   styleClass="secondary-text"/>
+
+            <Label fx:id="totalSalesLabel"
+                   text="0"
+                   styleClass="stat-value"/>
+
+        </VBox>
+
+        <VBox spacing="8"
+              styleClass="stat-card"
+              HBox.hgrow="ALWAYS">
+
+            <Label text="Chiffre d'affaires"
+                   styleClass="secondary-text"/>
+
+            <Label fx:id="revenueLabel"
+                   text="0,00 DH"
+                   styleClass="stat-value"/>
+
+        </VBox>
+
+        <VBox spacing="8"
+              styleClass="stat-card"
+              HBox.hgrow="ALWAYS">
+
+            <Label text="Ventes du jour"
+                   styleClass="secondary-text"/>
+
+            <Label fx:id="todaySalesLabel"
+                   text="0"
+                   styleClass="stat-value"/>
+
+        </VBox>
+
+        <VBox spacing="8"
+              styleClass="stat-card"
+              HBox.hgrow="ALWAYS">
+
+            <Label text="Ventes annulées"
+                   styleClass="secondary-text"/>
+
+            <Label fx:id="cancelledSalesLabel"
+                   text="0"
+                   styleClass="stat-value"/>
+
+        </VBox>
+
+    </HBox>
+
+    <!-- Recherche -->
+    <HBox alignment="CENTER_LEFT" spacing="12">
+
+        <TextField fx:id="searchField"
+                   promptText="Rechercher par référence ou client..."
+                   HBox.hgrow="ALWAYS"
+                   styleClass="search-field"/>
+
+        <ComboBox fx:id="statusFilter"
+                  promptText="Tous les statuts"
+                  prefWidth="170"/>
+
+        <Button text="Actualiser"
+                onAction="#handleRefresh"
+                styleClass="secondary-button"/>
+
+    </HBox>
+
+    <!-- Tableau des ventes -->
+    <VBox spacing="15"
+          styleClass="card"
+          VBox.vgrow="ALWAYS">
+
+        <Label text="Historique des ventes"
+               styleClass="section-title"/>
+
+        <TableView fx:id="salesTable"
+                   styleClass="suppliers-table"
+                   VBox.vgrow="ALWAYS">
+
+            <columns>
+
+                <TableColumn fx:id="referenceColumn"
+                             text="Référence"
+                             prefWidth="105"/>
+
+                <TableColumn fx:id="clientColumn"
+                             text="Client"
+                             prefWidth="180"/>
+
+                <TableColumn fx:id="dateColumn"
+                             text="Date"
+                             prefWidth="150"/>
+
+                <TableColumn fx:id="totalColumn"
+                             text="Total TTC"
+                             prefWidth="120"/>
+
+                <TableColumn fx:id="paymentStatusColumn"
+                             text="Paiement"
+                             prefWidth="145"/>
+
+                <TableColumn fx:id="saleStatusColumn"
+                             text="Statut"
+                             prefWidth="110"/>
+
+                <TableColumn fx:id="actionsColumn"
+                             text="Actions"
+                             prefWidth="120"
+                             sortable="false"/>
+
+            </columns>
+
+            <placeholder>
+                <Label text="Aucune vente enregistrée."/>
+            </placeholder>
+
+        </TableView>
+
+    </VBox>
+
+</VBox>
