@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="20"
+      prefWidth="620"
+      prefHeight="620"
+      styleClass="products-page"
+      xmlns="http://javafx.com/javafx/27.0.1"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.gestion.controller.SupplierFormController">
+
+    <padding>
+        <Insets top="25" right="30" bottom="25" left="30"/>
+    </padding>
+
+    <!-- En-tête -->
+    <VBox spacing="5">
+        <Label fx:id="formTitleLabel"
+               text="Nouveau fournisseur"
+               styleClass="page-title"/>
+
+        <Label text="Renseignez les informations du fournisseur"
+               styleClass="page-subtitle"/>
+    </VBox>
+
+    <!-- Informations principales -->
+    <VBox spacing="15" styleClass="card">
+        <Label text="Informations principales"
+               styleClass="section-title"/>
+
+        <VBox spacing="6">
+            <Label text="Nom du fournisseur *"/>
+            <TextField fx:id="nameField"
+                       promptText="Nom du fournisseur"/>
+        </VBox>
+
+        <HBox spacing="15">
+            <VBox spacing="6" HBox.hgrow="ALWAYS">
+                <Label text="Téléphone *"/>
+                <TextField fx:id="phoneField"
+                           promptText="06XXXXXXXX"/>
+            </VBox>
+
+            <VBox spacing="6" HBox.hgrow="ALWAYS">
+                <Label text="Email"/>
+                <TextField fx:id="emailField"
+                           promptText="exemple@email.com"/>
+            </VBox>
+        </HBox>
+    </VBox>
+
+    <!-- Coordonnées -->
+    <VBox spacing="15" styleClass="card">
+        <Label text="Coordonnées"
+               styleClass="section-title"/>
+
+        <VBox spacing="6">
+            <Label text="Adresse"/>
+            <TextField fx:id="addressField"
+                       promptText="Adresse du fournisseur"/>
+        </VBox>
+
+        <VBox spacing="6">
+            <Label text="Ville"/>
+            <TextField fx:id="cityField"
+                       promptText="Ville"/>
+        </VBox>
+
+        <VBox spacing="6">
+            <Label text="Description"/>
+            <TextArea fx:id="descriptionField"
+                      promptText="Informations supplémentaires..."
+                      prefRowCount="3"
+                      wrapText="true"/>
+        </VBox>
+    </VBox>
+
+    <!-- Message d'erreur -->
+    <Label fx:id="errorLabel"
+           text=""
+           styleClass="error-text"
+           wrapText="true"/>
+
+    <!-- Boutons -->
+    <HBox alignment="CENTER_RIGHT" spacing="12">
+        <Button text="Annuler"
+                onAction="#handleCancel"
+                styleClass="secondary-button"/>
+
+        <Button text="Enregistrer"
+                onAction="#handleSave"
+                styleClass="primary-button"/>
+    </HBox>
+
+</VBox>

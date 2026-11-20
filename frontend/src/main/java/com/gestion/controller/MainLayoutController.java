@@ -110,5 +110,13 @@ public class MainLayoutController {
         setActiveButton(clientsNavButton);
 
         System.out.println("Page Clients ouverte !");
-}
+    }
+
+    @FXML
+    private Button suppliersNavButton;
+    @FXML
+    private void showSuppliers() throws IOException {
+        navigationManager.navigateTo("Suppliers");
+        setActiveButton(suppliersNavButton);
+    }
 }

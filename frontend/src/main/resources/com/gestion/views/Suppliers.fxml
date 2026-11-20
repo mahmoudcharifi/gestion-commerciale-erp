@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="20"
+      styleClass="products-page"
+      xmlns="http://javafx.com/javafx/27.0.1"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.gestion.controller.SuppliersController">
+
+    <padding>
+        <Insets top="25" right="30" bottom="25" left="30"/>
+    </padding>
+
+    <!-- En-tête -->
+    <HBox alignment="CENTER_LEFT" spacing="15">
+        <VBox spacing="5" HBox.hgrow="ALWAYS">
+            <Label text="Gestion des fournisseurs"
+                   styleClass="page-title"/>
+            <Label text="Gérez les informations de vos fournisseurs"
+                   styleClass="page-subtitle"/>
+        </VBox>
+
+        <Button text="+ Nouveau fournisseur"
+                onAction="#handleAddSupplier"
+                styleClass="primary-button"/>
+    </HBox>
+
+    <!-- Statistiques -->
+    <HBox spacing="15">
+
+        <VBox spacing="8" styleClass="stat-card" HBox.hgrow="ALWAYS">
+            <Label text="Total fournisseurs"
+                   styleClass="secondary-text"/>
+            <Label fx:id="totalSuppliersLabel"
+                   text="0"
+                   styleClass="stat-value"/>
+        </VBox>
+
+        <VBox spacing="8" styleClass="stat-card" HBox.hgrow="ALWAYS">
+            <Label text="Fournisseurs actifs"
+                   styleClass="secondary-text"/>
+            <Label fx:id="activeSuppliersLabel"
+                   text="0"
+                   styleClass="stat-value"/>
+        </VBox>
+
+        <VBox spacing="8" styleClass="stat-card" HBox.hgrow="ALWAYS">
+            <Label text="Fournisseurs inactifs"
+                   styleClass="secondary-text"/>
+            <Label fx:id="inactiveSuppliersLabel"
+                   text="0"
+                   styleClass="stat-value"/>
+        </VBox>
+
+    </HBox>
+
+    <!-- Recherche -->
+    <HBox alignment="CENTER_LEFT" spacing="12">
+
+        <TextField fx:id="searchField"
+                   promptText="Rechercher par nom, code, téléphone ou email..."
+                   HBox.hgrow="ALWAYS"
+                   styleClass="search-field"/>
+
+        <Button text="Actualiser"
+                onAction="#handleRefresh"
+                styleClass="secondary-button"/>
+
+    </HBox>
+
+    <!-- Tableau -->
+    <VBox spacing="15"
+          styleClass="card"
+          VBox.vgrow="ALWAYS">
+
+        <Label text="Liste des fournisseurs"
+               styleClass="section-title"/>
+
+        <TableView fx:id="suppliersTable"
+                   styleClass="suppliers-table"
+                   VBox.vgrow="ALWAYS">
+
+            <columns>
+
+                <TableColumn fx:id="codeColumn"
+                             text="Code"
+                             prefWidth="75"
+                             minWidth="70"/>
+
+                <TableColumn fx:id="nameColumn"
+                             text="Fournisseur"
+                             prefWidth="130"
+                             minWidth="110"/>
+
+                <TableColumn fx:id="phoneColumn"
+                             text="Téléphone"
+                             prefWidth="100"
+                             minWidth="90"/>
+
+                <TableColumn fx:id="emailColumn"
+                             text="Email"
+                             prefWidth="145"
+                             minWidth="120"/>
+
+                <TableColumn fx:id="cityColumn"
+                             text="Ville"
+                             prefWidth="75"
+                             minWidth="65"/>
+
+                <TableColumn fx:id="statusColumn"
+                             text="Statut"
+                             prefWidth="75"
+                             minWidth="70"/>
+
+                <TableColumn fx:id="actionsColumn"
+                             text="Actions"
+                             prefWidth="185"
+                             minWidth="185"
+                             sortable="false"
+                             resizable="false"/>
+
+            </columns>
+
+            <placeholder>
+                <Label text="Aucun fournisseur enregistré."/>
+            </placeholder>
+
+        </TableView>
+
+    </VBox>
+
+</VBox>

@@ -105,3 +105,115 @@
 .products-table .table-row-cell {
     -fx-cell-size: 48px;
 }
+
+
+/* =====================================
+   FOURNISSEURS - TABLE DESIGN
+   Styles isolés du reste de l'ERP
+   ===================================== */
+
+.suppliers-table {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 8px;
+    -fx-border-color: #E1E7E3;
+    -fx-border-radius: 8px;
+    -fx-padding: 0;
+}
+
+/* En-tête */
+.suppliers-table .column-header-background {
+    -fx-background-color: #F0F3F1;
+}
+
+.suppliers-table .column-header {
+    -fx-background-color: transparent;
+    -fx-size: 44px;
+    -fx-border-color: transparent transparent #E1E7E3 transparent;
+}
+
+.suppliers-table .column-header .label {
+    -fx-text-fill: #46564D;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 0 8px;
+}
+
+/* Cellules */
+.suppliers-table .table-cell {
+    -fx-text-fill: #202B26;
+    -fx-font-size: 12px;
+    -fx-padding: 8px;
+    -fx-border-color: transparent;
+    -fx-alignment: CENTER_LEFT;
+}
+
+/* Lignes */
+.suppliers-table .table-row-cell {
+    -fx-background-color: #FFFFFF;
+    -fx-cell-size: 52px;
+    -fx-border-color: transparent transparent #EEF1EF transparent;
+}
+
+.suppliers-table .table-row-cell:odd {
+    -fx-background-color: #FAFBFA;
+}
+
+.suppliers-table .table-row-cell:hover {
+    -fx-background-color: #F0F5F2;
+}
+
+/* Sélection */
+.suppliers-table .table-row-cell:selected {
+    -fx-background-color: #E2EEE7;
+}
+
+.suppliers-table .table-row-cell:selected .table-cell {
+    -fx-text-fill: #24483D;
+}
+
+/* Placeholder */
+.suppliers-table .placeholder .label {
+    -fx-text-fill: #8A968F;
+    -fx-font-size: 13px;
+}
+
+/* Boutons Actions */
+.supplier-action-button {
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-padding: 7px 8px;
+    -fx-background-radius: 6px;
+    -fx-border-radius: 6px;
+    -fx-cursor: hand;
+}
+
+.supplier-edit-button {
+    -fx-background-color: #E8F0EC;
+    -fx-text-fill: #24483D;
+    -fx-border-color: #D5E2DA;
+}
+
+.supplier-edit-button:hover {
+    -fx-background-color: #DCEAE1;
+}
+
+.supplier-activate-button {
+    -fx-background-color: #23845B;
+    -fx-text-fill: #FFFFFF;
+    -fx-border-color: #23845B;
+}
+
+.supplier-activate-button:hover {
+    -fx-background-color: #1B6E4B;
+}
+
+.supplier-deactivate-button {
+    -fx-background-color: #FCEAEA;
+    -fx-text-fill: #C74747;
+    -fx-border-color: #F1D1D1;
+}
+
+.supplier-deactivate-button:hover {
+    -fx-background-color: #F7DCDC;
+}
