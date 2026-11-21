@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/27"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.gestion.controller.FacturesController"
+      spacing="20"
+      styleClass="products-page">
+
+    <!-- HEADER -->
+    <HBox alignment="CENTER_LEFT" spacing="15">
+
+        <VBox spacing="5" HBox.hgrow="ALWAYS">
+
+            <Label text="Gestion des factures"
+                   styleClass="page-title"/>
+
+            <Label text="Consultez et gérez les factures générées automatiquement."
+                   styleClass="page-subtitle"/>
+
+        </VBox>
+
+        <Button text="Actualiser"
+                onAction="#handleRefresh"
+                styleClass="secondary-button"/>
+
+    </HBox>
+
+    <!-- STATISTIQUES -->
+    <HBox spacing="15">
+
+        <VBox spacing="10"
+              HBox.hgrow="ALWAYS"
+              styleClass="stat-card">
+
+            <Label text="Total des factures"
+                   styleClass="secondary-text"/>
+
+            <Label fx:id="totalFacturesLabel"
+                   text="0"
+                   styleClass="stat-value"/>
+
+        </VBox>
+
+        <VBox spacing="10"
+              HBox.hgrow="ALWAYS"
+              styleClass="stat-card">
+
+            <Label text="Factures émises"
+                   styleClass="secondary-text"/>
+
+            <Label fx:id="facturesEmisesLabel"
+                   text="0"
+                   styleClass="stat-value"/>
+
+        </VBox>
+
+        <VBox spacing="10"
+              HBox.hgrow="ALWAYS"
+              styleClass="stat-card">
+
+            <Label text="Factures annulées"
+                   styleClass="secondary-text"/>
+
+            <Label fx:id="facturesAnnuleesLabel"
+                   text="0"
+                   styleClass="stat-value"/>
+
+        </VBox>
+
+    </HBox>
+
+    <!-- RECHERCHE ET FILTRES -->
+    <HBox spacing="12" alignment="CENTER_LEFT">
+
+        <TextField fx:id="searchField"
+                   promptText="Rechercher par référence, vente ou client..."
+                   HBox.hgrow="ALWAYS"/>
+
+        <ComboBox fx:id="statusFilter"
+                  prefWidth="180"
+                  promptText="Tous les statuts"/>
+
+    </HBox>
+
+    <!-- TABLEAU -->
+    <VBox spacing="12"
+          VBox.vgrow="ALWAYS"
+          styleClass="card">
+
+        <Label text="Liste des factures"
+               styleClass="section-title"/>
+
+        <TableView fx:id="facturesTable"
+                   VBox.vgrow="ALWAYS"
+                   styleClass="products-table">
+
+            <columns>
+
+                <TableColumn fx:id="referenceColumn"
+                             text="Référence"
+                             prefWidth="115"/>
+
+                <TableColumn fx:id="venteColumn"
+                             text="Vente"
+                             prefWidth="115"/>
+
+                <TableColumn fx:id="clientColumn"
+                             text="Client"
+                             prefWidth="180"/>
+
+                <TableColumn fx:id="dateColumn"
+                             text="Date d'émission"
+                             prefWidth="155"/>
+
+                <TableColumn fx:id="totalHTColumn"
+                             text="Total HT"
+                             prefWidth="110"/>
+
+                <TableColumn fx:id="tvaColumn"
+                             text="TVA"
+                             prefWidth="100"/>
+
+                <TableColumn fx:id="totalTTCColumn"
+                             text="Total TTC"
+                             prefWidth="120"/>
+
+                <TableColumn fx:id="statutColumn"
+                             text="Statut"
+                             prefWidth="110"/>
+
+                <TableColumn fx:id="actionsColumn"
+                             text="Actions"
+                             minWidth="180"
+                             prefWidth="210"/>
+
+            </columns>
+
+        </TableView>
+
+    </VBox>
+
+</VBox>

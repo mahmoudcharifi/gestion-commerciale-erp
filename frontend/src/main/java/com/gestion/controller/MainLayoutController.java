@@ -78,6 +78,7 @@ public class MainLayoutController {
         stockNavButton.getStyleClass().remove("nav-button-active");
         salesNavButton.getStyleClass().remove("nav-button-active");
         purchasesNavButton.getStyleClass().remove("nav-button-active");
+        invoicesNavButton.getStyleClass().remove("nav-button-active");
 
         if (!activeButton.getStyleClass().contains("nav-button-active")) {
             activeButton.getStyleClass().add("nav-button-active");
@@ -139,5 +140,19 @@ public class MainLayoutController {
         setActiveButton(purchasesNavButton);
 
         System.out.println("Page Achats ouverte !");
+    }
+
+
+    @FXML
+    private Button invoicesNavButton;
+
+    @FXML
+    private void showInvoices() throws IOException {
+
+        navigationManager.navigateTo("Factures");
+
+        setActiveButton(invoicesNavButton);
+
+        System.out.println("Page Factures ouverte !");
     }
 }

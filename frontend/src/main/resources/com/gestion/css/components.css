@@ -433,3 +433,26 @@
 .action-button {
     -fx-cursor: hand;
 }
+
+
+/* =========================================
+   FACTURES - BADGES DE STATUT
+========================================= */
+
+.status-badge {
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+    -fx-padding: 6px 10px;
+    -fx-background-radius: 20px;
+    -fx-alignment: CENTER;
+}
+
+.status-emise {
+    -fx-background-color: #E3F3E9;
+    -fx-text-fill: #23845B;
+}
+
+.status-annulee {
+    -fx-background-color: #FCEAEA;
+    -fx-text-fill: #C74747;
+}

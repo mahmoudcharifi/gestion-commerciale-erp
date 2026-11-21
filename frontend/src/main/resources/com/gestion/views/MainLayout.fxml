@@ -44,7 +44,7 @@
                     maxWidth="Infinity"
                     onAction="#showProducts"
                     styleClass="button, nav-button"/>
-                    
+
             <Button fx:id="categoriesNavButton"
                 text="Catégories"
                 maxWidth="Infinity"
@@ -80,8 +80,10 @@
                     onAction="#showStock"
                     styleClass="button, nav-button"/>
 
-            <Button text="Factures"
+            <Button fx:id="invoicesNavButton"
+                    text="Factures"
                     maxWidth="Infinity"
+                    onAction="#showInvoices"
                     styleClass="button, nav-button"/>
 
         </VBox>

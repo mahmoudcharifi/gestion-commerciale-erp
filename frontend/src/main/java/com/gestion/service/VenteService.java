@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.gestion.model.Client;
+import com.gestion.model.Facture;
 import com.gestion.model.LigneVente;
 import com.gestion.model.Produit;
 import com.gestion.model.StatutVente;
@@ -20,6 +21,9 @@ public class VenteService {
 
     private final StockService stockService =
             StockService.getInstance();
+    
+    private final FactureService factureService =
+        FactureService.getInstance();
 
     private long prochainId = 1;
     private long prochainNumero = 1;
@@ -174,8 +178,37 @@ public class VenteService {
             );
         }
 
-        // Confirmer la vente après les sorties
+        // Confirmer la vente
         vente.setStatutVente(StatutVente.VALIDEE);
+
+        try {
+            // Générer automatiquement la facture
+            Facture facture = factureService.genererFacture(vente);
+
+            System.out.println(
+                    "Facture générée avec succès : "
+                    + facture.getReference()
+            );
+
+        } catch (RuntimeException e) {
+
+            // En cas d'échec, remettre la vente en brouillon
+            vente.setStatutVente(StatutVente.BROUILLON);
+
+            // Restaurer le stock
+            for (Map.Entry<Produit, Integer> entree : quantites.entrySet()) {
+                stockService.entreeStock(
+                        entree.getKey(),
+                        entree.getValue(),
+                        "Annulation validation vente " + vente.getReference()
+                );
+            }
+
+            throw new IllegalStateException(
+                    "La vente n'a pas pu être validée car sa facture n'a pas pu être générée.",
+                    e
+            );
+        }
     }
 
     // =========================================
