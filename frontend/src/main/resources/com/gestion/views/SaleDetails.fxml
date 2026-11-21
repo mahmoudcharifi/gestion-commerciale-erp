@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane prefWidth="950"
+            prefHeight="720"
+            styleClass="products-page"
+            xmlns="http://javafx.com/javafx/27.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.gestion.controller.SaleDetailsController">
+
+    <center>
+        <ScrollPane fitToWidth="true"
+                    hbarPolicy="NEVER"
+                    styleClass="products-page">
+
+            <content>
+                <VBox spacing="20">
+                    <padding>
+                        <Insets top="25" right="30" bottom="25" left="30"/>
+                    </padding>
+
+                    <!-- EN-TÊTE -->
+                    <HBox alignment="CENTER_LEFT" spacing="15">
+                        <VBox spacing="5" HBox.hgrow="ALWAYS">
+                            <Label text="Détails de la vente"
+                                   styleClass="page-title"/>
+                            <Label text="Consultation des informations commerciales"
+                                   styleClass="page-subtitle"/>
+                        </VBox>
+
+                        <Label fx:id="referenceLabel"
+                               text="VEN-001"
+                               styleClass="section-title"/>
+                    </HBox>
+
+                    <!-- INFORMATIONS GÉNÉRALES -->
+                    <VBox spacing="15" styleClass="card">
+                        <Label text="Informations générales"
+                               styleClass="section-title"/>
+
+                        <GridPane hgap="25" vgap="15">
+                            <columnConstraints>
+                                <ColumnConstraints percentWidth="50"/>
+                                <ColumnConstraints percentWidth="50"/>
+                            </columnConstraints>
+
+                            <VBox spacing="5"
+                                  GridPane.columnIndex="0"
+                                  GridPane.rowIndex="0">
+                                <Label text="Référence" styleClass="secondary-text"/>
+                                <Label fx:id="referenceInfoLabel" text="-"/>
+                            </VBox>
+
+                            <VBox spacing="5"
+                                  GridPane.columnIndex="1"
+                                  GridPane.rowIndex="0">
+                                <Label text="Date de vente" styleClass="secondary-text"/>
+                                <Label fx:id="dateLabel" text="-"/>
+                            </VBox>
+
+                            <VBox spacing="5"
+                                  GridPane.columnIndex="0"
+                                  GridPane.rowIndex="1">
+                                <Label text="Statut de vente" styleClass="secondary-text"/>
+                                <Label fx:id="saleStatusLabel" text="-"/>
+                            </VBox>
+
+                            <VBox spacing="5"
+                                  GridPane.columnIndex="1"
+                                  GridPane.rowIndex="1">
+                                <Label text="Statut de paiement" styleClass="secondary-text"/>
+                                <Label fx:id="paymentStatusLabel" text="-"/>
+                            </VBox>
+                        </GridPane>
+                    </VBox>
+
+                    <!-- CLIENT -->
+                    <VBox spacing="15" styleClass="card">
+                        <Label text="Informations du client"
+                               styleClass="section-title"/>
+
+                        <GridPane hgap="25" vgap="15">
+                            <columnConstraints>
+                                <ColumnConstraints percentWidth="50"/>
+                                <ColumnConstraints percentWidth="50"/>
+                            </columnConstraints>
+
+                            <VBox spacing="5"
+                                  GridPane.columnIndex="0"
+                                  GridPane.rowIndex="0">
+                                <Label text="Nom du client" styleClass="secondary-text"/>
+                                <Label fx:id="clientLabel" text="-"/>
+                            </VBox>
+
+                            <VBox spacing="5"
+                                  GridPane.columnIndex="1"
+                                  GridPane.rowIndex="0">
+                                <Label text="Téléphone" styleClass="secondary-text"/>
+                                <Label fx:id="telephoneLabel" text="-"/>
+                            </VBox>
+
+                            <VBox spacing="5"
+                                  GridPane.columnIndex="0"
+                                  GridPane.rowIndex="1">
+                                <Label text="Adresse e-mail" styleClass="secondary-text"/>
+                                <Label fx:id="emailLabel"
+                                       text="-"
+                                       wrapText="true"/>
+                            </VBox>
+                        </GridPane>
+                    </VBox>
+
+                    <!-- PRODUITS -->
+                    <VBox spacing="15" styleClass="card">
+                        <Label text="Produits vendus"
+                               styleClass="section-title"/>
+
+                        <TableView fx:id="productsTable"
+                                   prefHeight="230">
+                            <columns>
+                                <TableColumn fx:id="referenceColumn"
+                                             text="Référence"
+                                             prefWidth="125"/>
+
+                                <TableColumn fx:id="productColumn"
+                                             text="Produit"
+                                             prefWidth="230"/>
+
+                                <TableColumn fx:id="priceColumn"
+                                             text="Prix unitaire"
+                                             prefWidth="145"/>
+
+                                <TableColumn fx:id="quantityColumn"
+                                             text="Quantité"
+                                             prefWidth="100"/>
+
+                                <TableColumn fx:id="totalColumn"
+                                             text="Total HT"
+                                             prefWidth="145"/>
+                            </columns>
+
+                            <placeholder>
+                                <Label text="Aucun produit dans cette vente."/>
+                            </placeholder>
+                        </TableView>
+                    </VBox>
+
+                    <!-- RÉCAPITULATIF -->
+                    <VBox spacing="12" styleClass="card">
+                        <Label text="Récapitulatif financier"
+                               styleClass="section-title"/>
+
+                        <HBox alignment="CENTER_LEFT">
+                            <Label text="Total HT"/>
+                            <Region HBox.hgrow="ALWAYS"/>
+                            <Label fx:id="totalHTLabel" text="0,00 DH"/>
+                        </HBox>
+
+                        <HBox alignment="CENTER_LEFT">
+                            <Label text="Remise globale"/>
+                            <Region HBox.hgrow="ALWAYS"/>
+                            <Label fx:id="discountLabel" text="0,00 DH"/>
+                        </HBox>
+
+                        <HBox alignment="CENTER_LEFT">
+                            <Label text="TVA"/>
+                            <Region HBox.hgrow="ALWAYS"/>
+                            <Label fx:id="vatLabel" text="0,00 DH"/>
+                        </HBox>
+
+                        <Separator/>
+
+                        <HBox alignment="CENTER_LEFT">
+                            <Label text="Total TTC"
+                                   styleClass="section-title"/>
+                            <Region HBox.hgrow="ALWAYS"/>
+                            <Label fx:id="totalTTCLabel"
+                                   text="0,00 DH"
+                                   styleClass="stat-value"/>
+                        </HBox>
+
+                        <HBox alignment="CENTER_LEFT">
+                            <Label text="Montant payé"/>
+                            <Region HBox.hgrow="ALWAYS"/>
+                            <Label fx:id="paidLabel" text="0,00 DH"/>
+                        </HBox>
+
+                        <HBox alignment="CENTER_LEFT">
+                            <Label text="Reste à payer"/>
+                            <Region HBox.hgrow="ALWAYS"/>
+                            <Label fx:id="remainingLabel" text="0,00 DH"/>
+                        </HBox>
+                    </VBox>
+
+                    <!-- FERMETURE -->
+                    <HBox alignment="CENTER_RIGHT">
+                        <Button text="Fermer"
+                                onAction="#handleClose"
+                                styleClass="secondary-button"/>
+                    </HBox>
+
+                </VBox>
+            </content>
+        </ScrollPane>
+    </center>
+</BorderPane>

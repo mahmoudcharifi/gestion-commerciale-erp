@@ -16,6 +16,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -265,18 +266,8 @@ public class SalesController {
                         );
 
                         detailsButton.setOnAction(event -> {
-
-                            Vente vente = getTableView()
-                                    .getItems().get(getIndex());
-
-                            afficherInformation(
-                                    "Référence : " + vente.getReference()
-                                    + "\nClient : "
-                                    + vente.getClient().getNomAffichage()
-                                    + "\nTotal TTC : "
-                                    + vente.getMontantTotalTTC()
-                                    + " DH"
-                            );
+                            Vente vente = getTableView().getItems().get(getIndex());
+                            ouvrirDetailsVente(vente);
                         });
                     }
 
@@ -470,5 +461,30 @@ public class SalesController {
         alert.setContentText(message);
 
         alert.showAndWait();
+    }
+    private void ouvrirDetailsVente(Vente vente) {
+        try {
+            FXMLLoader loader = new FXMLLoader(
+                getClass().getResource("/com/gestion/views/SaleDetails.fxml")
+            );
+
+            Parent root = loader.load();
+
+            SaleDetailsController controller = loader.getController();
+            controller.setVente(vente);
+
+            Stage stage = new Stage();
+            stage.setTitle("Détails de la vente " + vente.getReference());
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setScene(new Scene(root));
+            stage.setResizable(true);
+            stage.showAndWait();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            afficherInformation(
+                "Impossible d'ouvrir les détails de cette vente : " + e.getMessage()
+            );
+        }
     }
 }
