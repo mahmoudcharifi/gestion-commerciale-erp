@@ -67,6 +67,7 @@ public class MainLayoutController {
         System.out.println("Page Catégories ouverte !");
     }
 
+
     private void setActiveButton(Button activeButton) {
 
         productsNavButton.getStyleClass().remove("nav-button-active");
@@ -76,11 +77,13 @@ public class MainLayoutController {
         suppliersNavButton.getStyleClass().remove("nav-button-active");
         stockNavButton.getStyleClass().remove("nav-button-active");
         salesNavButton.getStyleClass().remove("nav-button-active");
+        purchasesNavButton.getStyleClass().remove("nav-button-active");
 
         if (!activeButton.getStyleClass().contains("nav-button-active")) {
             activeButton.getStyleClass().add("nav-button-active");
         }
     }
+
 
     @FXML
     private Button stockNavButton;
@@ -123,5 +126,18 @@ public class MainLayoutController {
         setActiveButton(salesNavButton);
 
         System.out.println("Page Ventes ouverte !");
-}
+    }
+
+    @FXML
+    private Button purchasesNavButton;
+
+    @FXML
+    private void showPurchases() throws IOException {
+
+        navigationManager.navigateTo("Achats");
+
+        setActiveButton(purchasesNavButton);
+
+        System.out.println("Page Achats ouverte !");
+    }
 }

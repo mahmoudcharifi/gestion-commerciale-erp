@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/27.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.gestion.controller.AchatFormController"
+            prefWidth="900" prefHeight="720"
+            styleClass="products-page">
+
+    <top>
+        <VBox spacing="8">
+            <padding>
+                <Insets top="25" right="30" bottom="15" left="30"/>
+            </padding>
+
+            <Label text="Nouvel achat" styleClass="page-title"/>
+            <Label text="Enregistrez un approvisionnement auprès d'un fournisseur."
+                   styleClass="page-subtitle"/>
+        </VBox>
+    </top>
+
+    <center>
+        <ScrollPane fitToWidth="true" hbarPolicy="NEVER">
+            <content>
+                <VBox spacing="20">
+                    <padding>
+                        <Insets top="10" right="30" bottom="25" left="30"/>
+                    </padding>
+
+                    <!-- Fournisseur -->
+                    <VBox spacing="12" styleClass="card">
+                        <Label text="Informations du fournisseur"
+                               styleClass="section-title"/>
+
+                        <GridPane hgap="15" vgap="12">
+                            <columnConstraints>
+                                <ColumnConstraints percentWidth="50"/>
+                                <ColumnConstraints percentWidth="50"/>
+                            </columnConstraints>
+
+                            <Label text="Fournisseur" GridPane.rowIndex="0"
+                                   GridPane.columnIndex="0"/>
+                            <ComboBox fx:id="fournisseurComboBox"
+                                      promptText="Sélectionner un fournisseur"
+                                      maxWidth="Infinity"
+                                      GridPane.rowIndex="1"
+                                      GridPane.columnIndex="0"/>
+
+                            <Label text="Date d'achat" GridPane.rowIndex="0"
+                                   GridPane.columnIndex="1"/>
+                            <DatePicker fx:id="dateAchatPicker"
+                                        maxWidth="Infinity"
+                                        GridPane.rowIndex="1"
+                                        GridPane.columnIndex="1"/>
+                        </GridPane>
+                    </VBox>
+
+                    <!-- Ajouter un produit -->
+                    <VBox spacing="12" styleClass="card">
+                        <Label text="Ajouter des produits"
+                               styleClass="section-title"/>
+
+                        <GridPane hgap="12" vgap="12">
+                            <columnConstraints>
+                                <ColumnConstraints percentWidth="38"/>
+                                <ColumnConstraints percentWidth="20"/>
+                                <ColumnConstraints percentWidth="20"/>
+                                <ColumnConstraints percentWidth="22"/>
+                            </columnConstraints>
+
+                            <Label text="Produit" GridPane.rowIndex="0"
+                                   GridPane.columnIndex="0"/>
+                            <Label text="Quantité" GridPane.rowIndex="0"
+                                   GridPane.columnIndex="1"/>
+                            <Label text="Prix d'achat HT" GridPane.rowIndex="0"
+                                   GridPane.columnIndex="2"/>
+                            <Label text="TVA (%)" GridPane.rowIndex="0"
+                                   GridPane.columnIndex="3"/>
+
+                            <ComboBox fx:id="produitComboBox"
+                                      promptText="Choisir un produit"
+                                      maxWidth="Infinity"
+                                      GridPane.rowIndex="1"
+                                      GridPane.columnIndex="0"/>
+
+                            <TextField fx:id="quantiteField"
+                                       promptText="Quantité"
+                                       GridPane.rowIndex="1"
+                                       GridPane.columnIndex="1"/>
+
+                            <TextField fx:id="prixAchatField"
+                                       promptText="Prix HT"
+                                       GridPane.rowIndex="1"
+                                       GridPane.columnIndex="2"/>
+
+                            <TextField fx:id="tauxTVAField"
+                                       promptText="Ex. 20"
+                                       GridPane.rowIndex="1"
+                                       GridPane.columnIndex="3"/>
+                        </GridPane>
+
+                        <HBox alignment="CENTER_RIGHT">
+                            <Button text="+ Ajouter le produit"
+                                    onAction="#handleAjouterProduit"
+                                    styleClass="primary-button"/>
+                        </HBox>
+                    </VBox>
+
+                    <!-- Tableau des lignes -->
+                    <VBox spacing="12" styleClass="card">
+                        <Label text="Produits de l'achat"
+                               styleClass="section-title"/>
+
+                        <TableView fx:id="lignesTable"
+                                   prefHeight="230">
+
+                            <columns>
+                                <TableColumn fx:id="produitColumn"
+                                             text="Produit"
+                                             prefWidth="180"/>
+                                <TableColumn fx:id="quantiteColumn"
+                                             text="Quantité"
+                                             prefWidth="90"/>
+                                <TableColumn fx:id="prixColumn"
+                                             text="Prix unitaire HT"
+                                             prefWidth="130"/>
+                                <TableColumn fx:id="tvaColumn"
+                                             text="TVA"
+                                             prefWidth="80"/>
+                                <TableColumn fx:id="totalColumn"
+                                             text="Total TTC"
+                                             prefWidth="130"/>
+                                <TableColumn fx:id="actionColumn"
+                                             text="Action"
+                                             prefWidth="100"/>
+                            </columns>
+
+                            <placeholder>
+                                <Label text="Aucun produit ajouté"/>
+                            </placeholder>
+                        </TableView>
+                    </VBox>
+
+                    <!-- Totaux -->
+                    <VBox spacing="12" styleClass="card">
+                        <Label text="Récapitulatif financier"
+                               styleClass="section-title"/>
+
+                        <GridPane hgap="15" vgap="12">
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="ALWAYS"/>
+                                <ColumnConstraints halignment="RIGHT"/>
+                            </columnConstraints>
+
+                            <Label text="Total HT" GridPane.rowIndex="0"
+                                   GridPane.columnIndex="0"/>
+                            <Label fx:id="totalHTLabel" text="0,00 DH"
+                                   GridPane.rowIndex="0"
+                                   GridPane.columnIndex="1"/>
+
+                            <Label text="Total TVA" GridPane.rowIndex="1"
+                                   GridPane.columnIndex="0"/>
+                            <Label fx:id="totalTVALabel" text="0,00 DH"
+                                   GridPane.rowIndex="1"
+                                   GridPane.columnIndex="1"/>
+
+                            <Label text="Total TTC" styleClass="section-title"
+                                   GridPane.rowIndex="2"
+                                   GridPane.columnIndex="0"/>
+                            <Label fx:id="totalTTCLabel"
+                                   text="0,00 DH"
+                                   styleClass="section-title"
+                                   GridPane.rowIndex="2"
+                                   GridPane.columnIndex="1"/>
+                        </GridPane>
+                    </VBox>
+
+                </VBox>
+            </content>
+        </ScrollPane>
+    </center>
+
+    <bottom>
+        <HBox alignment="CENTER_RIGHT" spacing="12">
+            <padding>
+                <Insets top="15" right="30" bottom="20" left="30"/>
+            </padding>
+
+            <Button text="Annuler"
+                    onAction="#handleAnnuler"
+                    styleClass="secondary-button"/>
+
+            <Button text="Enregistrer le brouillon"
+                    onAction="#handleEnregistrer"
+                    styleClass="primary-button"/>
+
+            <Button text="Enregistrer et valider"
+                    onAction="#handleEnregistrerEtValider"
+                    styleClass="primary-button"/>
+        </HBox>
+    </bottom>
+
+</BorderPane>

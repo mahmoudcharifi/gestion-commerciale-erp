@@ -359,3 +359,77 @@
     -fx-background-color: transparent;
     -fx-padding: 0;
 }
+
+
+/* =====================================
+   ERP - ACTION BUTTONS IMPROVEMENTS
+   ===================================== */
+
+.action-button {
+    -fx-font-family: "Inter", "Arial";
+    -fx-font-size: 10.5px;
+    -fx-font-weight: bold;
+    -fx-padding: 7px 9px;
+    -fx-background-radius: 6px;
+    -fx-border-radius: 6px;
+    -fx-cursor: hand;
+}
+
+.action-details {
+    -fx-background-color: #E8F0EC;
+    -fx-text-fill: #24483D;
+    -fx-border-color: #D5E2DA;
+}
+
+.action-details:hover {
+    -fx-background-color: #DCEAE1;
+}
+
+.action-edit {
+    -fx-background-color: #EDF2F8;
+    -fx-text-fill: #315C85;
+    -fx-border-color: #D8E3EF;
+}
+
+.action-edit:hover {
+    -fx-background-color: #DFEAF5;
+}
+
+.action-success {
+    -fx-background-color: #23845B;
+    -fx-text-fill: white;
+    -fx-border-color: #23845B;
+}
+
+.action-success:hover {
+    -fx-background-color: #1B6E4B;
+}
+
+.action-danger {
+    -fx-background-color: #FCEAEA;
+    -fx-text-fill: #C74747;
+    -fx-border-color: #F1D1D1;
+}
+
+.action-danger:hover {
+    -fx-background-color: #F7DCDC;
+}
+
+/* Alignement des actions */
+.table-actions {
+    -fx-alignment: CENTER;
+    -fx-spacing: 5px;
+}
+
+/* Hauteur homogène des lignes */
+.table-view .table-row-cell {
+    -fx-cell-size: 50px;
+}
+
+/* Amélioration des transitions visuelles */
+.primary-button,
+.secondary-button,
+.danger-button,
+.action-button {
+    -fx-cursor: hand;
+}

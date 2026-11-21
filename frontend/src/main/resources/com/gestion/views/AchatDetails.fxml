@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/27.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.gestion.controller.AchatDetailsController"
+            prefWidth="950"
+            prefHeight="720"
+            styleClass="products-page">
+
+    <top>
+        <VBox spacing="6">
+            <padding>
+                <Insets top="25" right="30" bottom="15" left="30"/>
+            </padding>
+
+            <HBox alignment="CENTER_LEFT">
+                <VBox spacing="5" HBox.hgrow="ALWAYS">
+                    <Label text="Détails de l'achat"
+                           styleClass="page-title"/>
+                    <Label text="Consultation des informations d'approvisionnement"
+                           styleClass="page-subtitle"/>
+                </VBox>
+
+                <Label fx:id="referenceLabel"
+                       text="ACH-001"
+                       styleClass="section-title"/>
+            </HBox>
+        </VBox>
+    </top>
+
+    <center>
+        <ScrollPane fitToWidth="true"
+                    hbarPolicy="NEVER"
+                    styleClass="details-scroll">
+
+            <content>
+                <VBox spacing="20">
+                    <padding>
+                        <Insets top="10" right="30" bottom="25" left="30"/>
+                    </padding>
+
+                    <!-- Informations générales -->
+                    <VBox spacing="15" styleClass="card">
+                        <Label text="Informations générales"
+                               styleClass="section-title"/>
+
+                        <GridPane hgap="30" vgap="15">
+                            <columnConstraints>
+                                <ColumnConstraints percentWidth="50"/>
+                                <ColumnConstraints percentWidth="50"/>
+                            </columnConstraints>
+
+                            <VBox spacing="5"
+                                  GridPane.rowIndex="0"
+                                  GridPane.columnIndex="0">
+                                <Label text="Référence"
+                                       styleClass="secondary-text"/>
+                                <Label fx:id="referenceInfoLabel"
+                                       text="-"/>
+                            </VBox>
+
+                            <VBox spacing="5"
+                                  GridPane.rowIndex="0"
+                                  GridPane.columnIndex="1">
+                                <Label text="Date d'achat"
+                                       styleClass="secondary-text"/>
+                                <Label fx:id="dateLabel" text="-"/>
+                            </VBox>
+
+                            <VBox spacing="5"
+                                  GridPane.rowIndex="1"
+                                  GridPane.columnIndex="0">
+                                <Label text="Statut de l'achat"
+                                       styleClass="secondary-text"/>
+                                <Label fx:id="statusLabel" text="-"/>
+                            </VBox>
+                        </GridPane>
+                    </VBox>
+
+                    <!-- Fournisseur -->
+                    <VBox spacing="15" styleClass="card">
+                        <Label text="Informations du fournisseur"
+                               styleClass="section-title"/>
+
+                        <GridPane hgap="30" vgap="15">
+                            <columnConstraints>
+                                <ColumnConstraints percentWidth="50"/>
+                                <ColumnConstraints percentWidth="50"/>
+                            </columnConstraints>
+
+                            <VBox spacing="5"
+                                  GridPane.rowIndex="0"
+                                  GridPane.columnIndex="0">
+                                <Label text="Nom du fournisseur"
+                                       styleClass="secondary-text"/>
+                                <Label fx:id="fournisseurLabel"
+                                       text="-"/>
+                            </VBox>
+
+                            <VBox spacing="5"
+                                  GridPane.rowIndex="0"
+                                  GridPane.columnIndex="1">
+                                <Label text="Téléphone"
+                                       styleClass="secondary-text"/>
+                                <Label fx:id="telephoneLabel"
+                                       text="-"/>
+                            </VBox>
+
+                            <VBox spacing="5"
+                                  GridPane.rowIndex="1"
+                                  GridPane.columnIndex="0">
+                                <Label text="Adresse e-mail"
+                                       styleClass="secondary-text"/>
+                                <Label fx:id="emailLabel"
+                                       text="-"/>
+                            </VBox>
+
+                            <VBox spacing="5"
+                                  GridPane.rowIndex="1"
+                                  GridPane.columnIndex="1">
+                                <Label text="Ville"
+                                       styleClass="secondary-text"/>
+                                <Label fx:id="villeLabel"
+                                       text="-"/>
+                            </VBox>
+                        </GridPane>
+                    </VBox>
+
+                    <!-- Produits -->
+                    <VBox spacing="12" styleClass="card">
+                        <Label text="Produits achetés"
+                               styleClass="section-title"/>
+
+                        <TableView fx:id="produitsTable"
+                                   prefHeight="240">
+
+                            <columns>
+                                <TableColumn fx:id="referenceColumn"
+                                             text="Référence"
+                                             prefWidth="110"/>
+
+                                <TableColumn fx:id="produitColumn"
+                                             text="Produit"
+                                             prefWidth="180"/>
+
+                                <TableColumn fx:id="prixColumn"
+                                             text="Prix unitaire HT"
+                                             prefWidth="140"/>
+
+                                <TableColumn fx:id="quantiteColumn"
+                                             text="Quantité"
+                                             prefWidth="90"/>
+
+                                <TableColumn fx:id="tvaColumn"
+                                             text="TVA"
+                                             prefWidth="80"/>
+
+                                <TableColumn fx:id="totalColumn"
+                                             text="Total TTC"
+                                             prefWidth="130"/>
+                            </columns>
+
+                            <placeholder>
+                                <Label text="Aucun produit dans cet achat"/>
+                            </placeholder>
+                        </TableView>
+                    </VBox>
+
+                    <!-- Récapitulatif -->
+                    <VBox spacing="15" styleClass="card">
+                        <Label text="Récapitulatif financier"
+                               styleClass="section-title"/>
+
+                        <GridPane hgap="20" vgap="12">
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="ALWAYS"/>
+                                <ColumnConstraints halignment="RIGHT"/>
+                            </columnConstraints>
+
+                            <Label text="Total HT"
+                                   GridPane.rowIndex="0"
+                                   GridPane.columnIndex="0"/>
+
+                            <Label fx:id="totalHTLabel"
+                                   text="0,00 DH"
+                                   GridPane.rowIndex="0"
+                                   GridPane.columnIndex="1"/>
+
+                            <Label text="Total TVA"
+                                   GridPane.rowIndex="1"
+                                   GridPane.columnIndex="0"/>
+
+                            <Label fx:id="totalTVALabel"
+                                   text="0,00 DH"
+                                   GridPane.rowIndex="1"
+                                   GridPane.columnIndex="1"/>
+
+                            <Label text="Total TTC"
+                                   styleClass="section-title"
+                                   GridPane.rowIndex="2"
+                                   GridPane.columnIndex="0"/>
+
+                            <Label fx:id="totalTTCLabel"
+                                   text="0,00 DH"
+                                   styleClass="section-title"
+                                   GridPane.rowIndex="2"
+                                   GridPane.columnIndex="1"/>
+                        </GridPane>
+                    </VBox>
+
+                </VBox>
+            </content>
+        </ScrollPane>
+    </center>
+
+    <bottom>
+        <HBox alignment="CENTER_RIGHT">
+            <padding>
+                <Insets top="12" right="30" bottom="20" left="30"/>
+            </padding>
+
+            <Button text="Fermer"
+                    onAction="#handleClose"
+                    styleClass="secondary-button"/>
+        </HBox>
+    </bottom>
+
+</BorderPane>

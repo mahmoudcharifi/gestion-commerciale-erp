@@ -13,6 +13,7 @@ public class Produit {
     private int quantite;
     private int seuilMinimal;
     private BigDecimal tauxTVA;
+    private BigDecimal prixAchat;
     
     
 
@@ -31,6 +32,7 @@ public class Produit {
         this.quantite = quantite;
         this.seuilMinimal = 5;
         this.tauxTVA = BigDecimal.ZERO;
+        this.prixAchat = BigDecimal.ZERO;
     }
 
     // Getters
@@ -118,5 +120,21 @@ public class Produit {
         }
 
         this.tauxTVA = tauxTVA;
+    }
+
+
+    public BigDecimal getPrixAchat() {
+        return prixAchat;
+    }
+
+    public void setPrixAchat(BigDecimal prixAchat) {
+
+        if (prixAchat == null || prixAchat.compareTo(BigDecimal.ZERO) < 0) {
+            throw new IllegalArgumentException(
+                "Le prix d'achat doit être positif ou égal à zéro."
+            );
+        }
+
+        this.prixAchat = prixAchat;
     }
 }

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/27.0.1"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.gestion.controller.AchatsController"
+      spacing="20"
+      styleClass="products-page">
+
+    <padding>
+        <Insets top="25" right="30" bottom="25" left="30"/>
+    </padding>
+
+    <!-- En-tête -->
+    <HBox alignment="CENTER_LEFT" spacing="15">
+
+        <VBox spacing="5" HBox.hgrow="ALWAYS">
+            <Label text="Gestion des achats"
+                   styleClass="page-title"/>
+
+            <Label text="Suivez vos achats et gérez les approvisionnements."
+                   styleClass="page-subtitle"/>
+        </VBox>
+
+        <Button text="+ Nouvel achat"
+                onAction="#handleNouvelAchat"
+                styleClass="primary-button"/>
+    </HBox>
+
+    <!-- Statistiques -->
+    <HBox spacing="15">
+
+        <VBox styleClass="stat-card" HBox.hgrow="ALWAYS">
+            <Label text="Total des achats"
+                   styleClass="secondary-text"/>
+            <Label fx:id="totalAchatsLabel"
+                   text="0,00 DH"
+                   styleClass="stat-value"/>
+        </VBox>
+
+        <VBox styleClass="stat-card" HBox.hgrow="ALWAYS">
+            <Label text="Nombre d'achats"
+                   styleClass="secondary-text"/>
+            <Label fx:id="nombreAchatsLabel"
+                   text="0"
+                   styleClass="stat-value"/>
+        </VBox>
+
+        <VBox styleClass="stat-card" HBox.hgrow="ALWAYS">
+            <Label text="Achats validés"
+                   styleClass="secondary-text"/>
+            <Label fx:id="achatsValidesLabel"
+                   text="0"
+                   styleClass="stat-value"/>
+        </VBox>
+
+        <VBox styleClass="stat-card" HBox.hgrow="ALWAYS">
+            <Label text="Achats annulés"
+                   styleClass="secondary-text"/>
+            <Label fx:id="achatsAnnulesLabel"
+                   text="0"
+                   styleClass="stat-value"/>
+        </VBox>
+
+    </HBox>
+
+    <!-- Recherche et filtres -->
+    <HBox alignment="CENTER_LEFT" spacing="12">
+
+        <TextField fx:id="searchField"
+                   promptText="Rechercher par référence ou fournisseur..."
+                   HBox.hgrow="ALWAYS"/>
+
+        <ComboBox fx:id="statusFilter"
+                  promptText="Tous les statuts"
+                  prefWidth="180"/>
+
+        <Button text="Actualiser"
+                onAction="#handleActualiser"
+                styleClass="secondary-button"/>
+
+    </HBox>
+
+    <!-- Tableau des achats -->
+    <VBox spacing="12" styleClass="card" VBox.vgrow="ALWAYS">
+
+        <Label text="Historique des achats"
+               styleClass="section-title"/>
+
+        <TableView fx:id="achatsTable"
+                   VBox.vgrow="ALWAYS">
+
+            <columns>
+
+                <TableColumn fx:id="referenceColumn"
+                             text="Référence"
+                             prefWidth="110"/>
+
+                <TableColumn fx:id="fournisseurColumn"
+                             text="Fournisseur"
+                             prefWidth="190"/>
+
+                <TableColumn fx:id="dateColumn"
+                             text="Date"
+                             prefWidth="150"/>
+
+                <TableColumn fx:id="totalColumn"
+                             text="Total TTC"
+                             prefWidth="120"/>
+
+                <TableColumn fx:id="statusColumn"
+                             text="Statut"
+                             prefWidth="120"/>
+
+                <TableColumn fx:id="actionsColumn"
+                            text="Actions"
+                            minWidth="245"
+                            prefWidth="260"/>
+
+            </columns>
+
+            <placeholder>
+                <VBox alignment="CENTER" spacing="8">
+                    <Label text="Aucun achat enregistré"/>
+                    <Label text="Commencez par créer votre premier achat."
+                           styleClass="secondary-text"/>
+                </VBox>
+            </placeholder>
+
+        </TableView>
+
+    </VBox>
+
+</VBox>
