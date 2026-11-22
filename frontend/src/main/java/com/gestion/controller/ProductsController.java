@@ -66,35 +66,39 @@ public class ProductsController {
 
     private FilteredList<Produit> filteredProducts;
 
+    private static void initialiserProduitsDemo() {
+        if (products.isEmpty()) {
+            products.addAll(
+                new Produit(
+                    "PRD-001",
+                    "Ordinateur HP",
+                    "Informatique",
+                    new BigDecimal("5500.00"),
+                    12
+                ),
+                new Produit(
+                    "PRD-002",
+                    "Souris Logitech",
+                    "Accessoires",
+                    new BigDecimal("150.00"),
+                    35
+                ),
+                new Produit(
+                    "PRD-003",
+                    "Clavier Dell",
+                    "Accessoires",
+                    new BigDecimal("250.00"),
+                    20
+                )
+            );
+        }
+    }
+
 
     @FXML
     public void initialize() {
 
-        if (products.isEmpty()) {
-        products.addAll(
-            new Produit(
-                "PRD-001",
-                "Ordinateur HP",
-                "Informatique",
-                new BigDecimal("5500.00"),
-                12
-            ),
-            new Produit(
-                "PRD-002",
-                "Souris Logitech",
-                "Accessoires",
-                new BigDecimal("150.00"),
-                35
-            ),
-            new Produit(
-                "PRD-003",
-                "Clavier Dell",
-                "Accessoires",
-                new BigDecimal("250.00"),
-                20
-            )
-        );
-    }
+       assurerInitialisation();
 
         // 2. Configuration des colonnes
         referenceColumn.setCellValueFactory(
@@ -432,5 +436,7 @@ public class ProductsController {
         return FXCollections.unmodifiableObservableList(products);
     }
 
-
+    public static void assurerInitialisation() {
+        initialiserProduitsDemo();
+    }
 }
