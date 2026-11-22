@@ -1,11 +1,13 @@
 package com.gestion.controller;
 
+import java.io.File;
 import java.math.BigDecimal;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import com.gestion.model.Facture;
 import com.gestion.model.StatutFacture;
+import com.gestion.service.FacturePdfService;
 import com.gestion.service.FactureService;
 
 import javafx.beans.property.ReadOnlyStringWrapper;
@@ -21,6 +23,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
+import javafx.stage.FileChooser;
+
+
 
 public class FacturesController {
 
@@ -30,6 +35,9 @@ public class FacturesController {
 
     private final FactureService factureService =
             FactureService.getInstance();
+
+    private final FacturePdfService facturePdfService =
+        new FacturePdfService();
 
     private final ObservableList<Facture> factures =
             FXCollections.observableArrayList();
@@ -209,9 +217,11 @@ public class FacturesController {
 
                     private final Button cancelButton =
                             new Button("Annuler");
+                    
+                    private final Button pdfButton = new Button("PDF");
 
                     private final HBox container =
-                            new HBox(5, detailsButton, cancelButton);
+                            new HBox(5, detailsButton, pdfButton, cancelButton);
 
                     {
                         detailsButton.getStyleClass().addAll(
@@ -222,6 +232,10 @@ public class FacturesController {
                         cancelButton.getStyleClass().addAll(
                                 "action-button",
                                 "action-danger"
+                        );
+                        pdfButton.getStyleClass().addAll(
+                                "action-button",
+                                "action-success"
                         );
 
                         detailsButton.setOnAction(event -> {
@@ -237,8 +251,16 @@ public class FacturesController {
 
                             annulerFacture(facture);
                         });
+
+                        pdfButton.setOnAction(event -> {
+                            Facture facture = getTableView()
+                                    .getItems().get(getIndex());
+
+                            exporterFacturePdf(facture);
+                        });
                     }
 
+                    
                     @Override
                     protected void updateItem(Void item, boolean empty) {
                         super.updateItem(item, empty);
@@ -255,12 +277,68 @@ public class FacturesController {
                                             == StatutFacture.ANNULEE;
 
                             cancelButton.setDisable(annulee);
+                            pdfButton.setDisable(annulee);
 
                             setGraphic(container);
                         }
                     }
                 }
         );
+    }
+
+
+    private void exporterFacturePdf(Facture facture) {
+
+        FileChooser fileChooser = new FileChooser();
+
+        fileChooser.setTitle("Enregistrer la facture PDF");
+
+        fileChooser.setInitialFileName(
+                facture.getReference() + ".pdf"
+        );
+
+        fileChooser.getExtensionFilters().add(
+                new FileChooser.ExtensionFilter(
+                        "Fichier PDF",
+                        "*.pdf"
+                )
+        );
+
+        File fichier = fileChooser.showSaveDialog(
+                facturesTable.getScene().getWindow()
+        );
+
+        if (fichier == null) {
+            return;
+        }
+
+        try {
+            String chemin = fichier.getAbsolutePath();
+
+            if (!chemin.toLowerCase().endsWith(".pdf")) {
+                chemin += ".pdf";
+            }
+
+            facturePdfService.genererFacturePdf(
+                    facture,
+                    chemin
+            );
+
+            afficherMessage(
+                    Alert.AlertType.INFORMATION,
+                    "Export réussi",
+                    "La facture " + facture.getReference()
+                            + " a été exportée avec succès."
+            );
+
+        } catch (RuntimeException e) {
+
+            afficherMessage(
+                    Alert.AlertType.ERROR,
+                    "Erreur d'exportation",
+                    e.getMessage()
+            );
+        }
     }
 
     // =========================================
