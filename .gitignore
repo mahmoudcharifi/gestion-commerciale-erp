@@ -30,3 +30,23 @@ application-local.properties
 
 # Temporary files
 *.tmp
+
+
+# Java / Maven
+**/target/
+*.class
+*.log
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# macOS
+.DS_Store
+
+# Secrets
+.env
+.env.*
+!.env.example
+application-local.properties
