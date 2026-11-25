@@ -7,6 +7,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -40,7 +41,13 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         final String authHeader = request.getHeader("Authorization");
 
+        System.out.println("\n========== JWT FILTER ==========");
+        System.out.println("Request URI: " + request.getRequestURI());
+        System.out.println("Authorization header present: " + (authHeader != null));
+
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+            System.out.println("No Bearer token found.");
+
             filterChain.doFilter(request, response);
             return;
         }
@@ -50,13 +57,22 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         try {
             String email = jwtService.extractUsername(token);
 
-            if (email != null
-                    && SecurityContextHolder.getContext().getAuthentication() == null) {
+            System.out.println("JWT subject: " + email);
+
+            if (email != null &&
+                    SecurityContextHolder.getContext().getAuthentication() == null) {
 
                 UserDetails userDetails =
                         userDetailsService.loadUserByUsername(email);
 
-                if (jwtService.isTokenValid(token, userDetails)) {
+                System.out.println("User enabled: " + userDetails.isEnabled());
+                System.out.println("Authorities: " + userDetails.getAuthorities());
+
+                boolean valid = jwtService.isTokenValid(token, userDetails);
+
+                System.out.println("JWT valid: " + valid);
+
+                if (valid) {
 
                     UsernamePasswordAuthenticationToken authentication =
                             new UsernamePasswordAuthenticationToken(
@@ -72,12 +88,21 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
                     SecurityContextHolder.getContext()
                             .setAuthentication(authentication);
+
+                    System.out.println("Authentication successfully set.");
+                } else {
+                    System.out.println("JWT INVALID.");
                 }
             }
 
         } catch (JwtException | IllegalArgumentException exception) {
+
+            System.out.println("JWT ERROR: " + exception.getMessage());
             SecurityContextHolder.clearContext();
-        } catch (org.springframework.security.core.userdetails.UsernameNotFoundException exception) {
+
+        } catch (UsernameNotFoundException exception) {
+
+            System.out.println("USER NOT FOUND: " + exception.getMessage());
             SecurityContextHolder.clearContext();
         }
 
