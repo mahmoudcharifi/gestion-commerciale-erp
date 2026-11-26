@@ -121,14 +121,12 @@ public class UserService {
 
         Utilisateur utilisateur = findUserById(id);
 
-        boolean isAdmin = utilisateur.getRoles()
-                .stream()
-                .anyMatch(role -> role.getNom().equals("ADMIN"));
+        if (!actif && utilisateur.getActif()
+                && utilisateur.getRoles().stream()
+                        .anyMatch(role -> role.getNom().equals("ADMIN"))) {
 
-        if (!actif && isAdmin) {
-
-            long activeAdmins = utilisateurRepository
-                    .countByRoles_NomAndActifTrue("ADMIN");
+            long activeAdmins =
+                    utilisateurRepository.countByRoles_NomAndActifTrue("ADMIN");
 
             if (activeAdmins <= 1) {
                 throw new IllegalArgumentException(
@@ -144,7 +142,6 @@ public class UserService {
         );
     }
 
-    // DELETE USER
     public void deleteUser(Long id) {
 
         Utilisateur utilisateur = findUserById(id);
@@ -153,10 +150,10 @@ public class UserService {
                 .stream()
                 .anyMatch(role -> role.getNom().equals("ADMIN"));
 
-        if (isAdmin) {
+        if (Boolean.TRUE.equals(utilisateur.getActif()) && isAdmin) {
 
-            long activeAdmins = utilisateurRepository
-                    .countByRoles_NomAndActifTrue("ADMIN");
+            long activeAdmins =
+                    utilisateurRepository.countByRoles_NomAndActifTrue("ADMIN");
 
             if (activeAdmins <= 1) {
                 throw new IllegalArgumentException(
